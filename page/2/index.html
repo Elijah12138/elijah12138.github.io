@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Elijah的个人博客</title>
+  <title>Elijah的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Elijah的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Elijah的个人博客">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Elijah">
@@ -138,376 +138,122 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-高德地图API常用方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">高德地图API常用方法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/03/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-04-03T13:29:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>高德地图官网链接:</p>
+<p><a href="https://lbs.amap.com/api/javascript-api/summary" target="_blank" rel="noopener">https://lbs.amap.com/api/javascript-api/summary</a></p>
+</blockquote>
+<hr>
+<h4 id="1-申请应用"><a href="#1-申请应用" class="headerlink" title="1. 申请应用"></a>1. 申请应用</h4><p>![高德地图api常用方法.png][<a href="http://blog-elijah.test.upcdn.net/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEapi%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png]" target="_blank" rel="noopener">http://blog-elijah.test.upcdn.net/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEapi%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png]</a></p>
+<h4 id="2-地图的初始化"><a href="#2-地图的初始化" class="headerlink" title="2. 地图的初始化"></a>2. 地图的初始化</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 引入资源文件</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">"container"</span>, &#123;</span><br><span class="line">    resizeEnable: <span class="literal">true</span>,</span><br><span class="line">    zoom: <span class="number">5</span>, <span class="comment">// 缩放倍数</span></span><br><span class="line">    center:  [<span class="number">116.395577</span>, <span class="number">39.892257</span>],<span class="comment">//地图显示时中心点</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="3-坐标转换"><a href="#3-坐标转换" class="headerlink" title="3. 坐标转换"></a>3. 坐标转换</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gps = [</span><br><span class="line">         [<span class="number">116.395577</span>, <span class="number">39.892257</span>],</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    AMap.convertFrom(gps, <span class="string">'gps'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">status, result</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (result.info === <span class="string">'ok'</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> lnglats = result.locations;<span class="comment">//转换后的坐标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="4-点标记"><a href="#4-点标记" class="headerlink" title="4. 点标记"></a>4. 点标记</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, marker; i &lt; lnglats.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> marker = <span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">        position: lnglats[i],</span><br><span class="line">        map: map</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 设置点的提示信息</span></span><br><span class="line">    marker.content = <span class="string">'&lt;div&gt;提示信息&lt;/div&gt;'</span>;</span><br><span class="line">    <span class="comment">// 鼠标滑过自动显示提示信息</span></span><br><span class="line">    marker.on(<span class="string">'mouseover'</span>, infoOpen);</span><br><span class="line">    marker.on(<span class="string">'mouseout'</span>, infoClose);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-设置点的图标，大小"><a href="#5-设置点的图标，大小" class="headerlink" title="5. 设置点的图标，大小"></a>5. 设置点的图标，大小</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> marker = <span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">    position: [<span class="number">116.395577</span>, <span class="number">39.892257</span>],</span><br><span class="line">    map: map,</span><br><span class="line">    offset: <span class="keyword">new</span> AMap.Pixel(<span class="number">-13</span>, <span class="number">-30</span>),</span><br><span class="line">    icon: <span class="keyword">new</span> AMap.Icon(&#123;</span><br><span class="line">        size: <span class="keyword">new</span> AMap.Size(<span class="number">19</span>, <span class="number">33</span>), <span class="comment">// 图标尺寸</span></span><br><span class="line">        image: <span class="string">'//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png'</span>,</span><br><span class="line">        imageSize: <span class="keyword">new</span> AMap.Size(<span class="number">19</span>, <span class="number">33</span>)</span><br><span class="line">    &#125;),</span><br><span class="line">&#125;);</span><br><span class="line">marker.setMap(map);</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-添加控件"><a href="#5-添加控件" class="headerlink" title="5. 添加控件"></a>5. 添加控件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AMap.plugin([<span class="string">'AMap.ToolBar'</span>,<span class="string">'AMap.Scale'</span>,<span class="string">'AMap.OverView'</span>, <span class="string">"AMap.ControlBar"</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 工具条</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.ToolBar());</span><br><span class="line">        <span class="comment">// 比例尺</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.Scale());</span><br><span class="line">        <span class="comment">// 鹰眼</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.OverView(&#123;<span class="attr">isOpen</span>:<span class="literal">true</span>&#125;));</span><br><span class="line">        <span class="comment">// 指南针</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.ControlBar());</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="6-矢量图形"><a href="#6-矢量图形" class="headerlink" title="6. 矢量图形"></a>6. 矢量图形</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">"container"</span>, &#123;</span><br><span class="line">    center: [<span class="number">116.395577</span>, <span class="number">39.892257</span>],</span><br><span class="line">    zoom: <span class="number">14</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path = [</span><br><span class="line">    [<span class="number">116.362209</span>, <span class="number">39.887487</span>],</span><br><span class="line">    [<span class="number">116.422897</span>, <span class="number">39.878002</span>],</span><br><span class="line">    [<span class="number">116.372105</span>, <span class="number">39.90651</span>],</span><br><span class="line">    [<span class="number">116.428945</span>, <span class="number">39.89663</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> polyline = <span class="keyword">new</span> AMap.Polyline(&#123;</span><br><span class="line">    path: path,</span><br><span class="line">    isOutline: <span class="literal">true</span>,</span><br><span class="line">    outlineColor: <span class="string">'#ffeeff'</span>,</span><br><span class="line">    borderWeight: <span class="number">3</span>,</span><br><span class="line">    strokeColor: <span class="string">"#3366FF"</span>, </span><br><span class="line">    strokeOpacity: <span class="number">1</span>,</span><br><span class="line">    strokeWeight: <span class="number">6</span>,</span><br><span class="line">    <span class="comment">// 折线样式还支持 'dashed'</span></span><br><span class="line">    strokeStyle: <span class="string">"solid"</span>,</span><br><span class="line">    <span class="comment">// strokeStyle是dashed时有效</span></span><br><span class="line">    strokeDasharray: [<span class="number">10</span>, <span class="number">5</span>],</span><br><span class="line">    lineJoin: <span class="string">'round'</span>,</span><br><span class="line">    lineCap: <span class="string">'round'</span>,</span><br><span class="line">    zIndex: <span class="number">50</span>,</span><br><span class="line">&#125;)</span><br><span class="line"> polyline.setMap(map)</span><br><span class="line"><span class="comment">// 缩放地图到合适的视野级别</span></span><br><span class="line">map.setFitView([ polyline ])</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/%E8%A7%A3%E5%86%B3Host-key-verification-failed/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:56:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/%E8%A7%A3%E5%86%B3Host-key-verification-failed/">解决Host key verification failed</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">解决Host key verification failed</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">高德地图</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/JS-%E6%8E%A7%E5%88%B6div%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:53:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Jetson-nano-换源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/JS-%E6%8E%A7%E5%88%B6div%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F/">JS-控制div显示和隐藏</a>
+      <a class="article-title" href="/2020/04/03/Jetson-nano-%E6%8D%A2%E6%BA%90/">Jetson nano-换源</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS/JQuery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/JS-%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E9%AB%98%E5%BA%A6%E5%92%8C%E5%AE%BD%E5%BA%A6/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:52:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+        
+        <a href="/2020/04/03/Jetson-nano-%E6%8D%A2%E6%BA%90/" class="archive-article-date">
+  	<time datetime="2020-04-03T13:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/JS-%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E9%AB%98%E5%BA%A6%E5%92%8C%E5%AE%BD%E5%BA%A6/">JS-获取网页高度和宽度</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS/JQuery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/JQuery-%E5%8F%91%E9%80%81ajax%E8%AF%B7%E6%B1%82/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/JQuery-%E5%8F%91%E9%80%81ajax%E8%AF%B7%E6%B1%82/">JQuery-发送ajax请求</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-security main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-updates main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-backports main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-security main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-updates main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-backports main multiverse restricted universe</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS/JQuery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/Linux%EF%BC%88ubuntu%EF%BC%89-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:49:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/Linux%EF%BC%88ubuntu%EF%BC%89-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/">Linux（ubuntu）-配置java环境</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/Linux-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:45:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/Linux-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/">Linux-部署项目</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/%E9%98%BF%E9%87%8C%E4%BA%91-OSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88JAVA%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:42:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/%E9%98%BF%E9%87%8C%E4%BA%91-OSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88JAVA%EF%BC%89/">阿里云-OSS简单使用（JAVA）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">阿里云</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/SpringBoot-%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:41:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/SpringBoot-%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">SpringBoot-设置定时任务</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/SpringBoot-%E9%85%8D%E7%BD%AEredis%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:37:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/SpringBoot-%E9%85%8D%E7%BD%AEredis%EF%BC%88%E4%B8%80%EF%BC%89/">SpringBoot-配置redis（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/Jetson-nano-%E5%AE%89%E8%A3%85-mxnet/" class="archive-article-date">
-  	<time datetime="2020-04-03T13:31:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/Jetson-nano-%E5%AE%89%E8%A3%85-mxnet/">Jetson nano-安装 mxnet</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -519,21 +265,337 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/Jetson-nano-%E6%8D%A2%E6%BA%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
+    <article id="post-搭建博客-hexo（github）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    </div></section>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-hexo%EF%BC%88github%EF%BC%89/">搭建博客-hexo（github）</a>
+    </h1>
   
 
+        
+        <a href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-hexo%EF%BC%88github%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-04-03T13:22:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-安装node-js"><a href="#1-安装node-js" class="headerlink" title="1.安装node.js"></a>1.安装<code>node.js</code></h5><blockquote>
+<p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
+</blockquote>
+<h5 id="2-安装cnpm"><a href="#2-安装cnpm" class="headerlink" title="2.安装cnpm"></a>2.安装<code>cnpm</code></h5><blockquote>
+<p>cmd : <code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+</blockquote>
+<h5 id="3-安装hexo"><a href="#3-安装hexo" class="headerlink" title="3.安装hexo"></a>3.安装<code>hexo</code></h5><blockquote>
+<p>cmd: <code>cnpm install -g hexo-cli</code></p>
+</blockquote>
+<h5 id="4-在电脑任一路径下创建一个空文件，运行hexo-init初始化博客"><a href="#4-在电脑任一路径下创建一个空文件，运行hexo-init初始化博客" class="headerlink" title="4.在电脑任一路径下创建一个空文件，运行hexo init初始化博客"></a>4.在电脑任一路径下创建一个空文件，运行<code>hexo init</code>初始化博客</h5><h5 id="5-常用命令"><a href="#5-常用命令" class="headerlink" title="5.常用命令"></a>5.常用命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">启动：hexo s</span><br><span class="line">创建文章：hexo n &quot;名称&quot;</span><br><span class="line">清除资源：hexo clean</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-部署到github"><a href="#6-部署到github" class="headerlink" title="6.部署到github"></a>6.部署到<code>github</code></h5><ol>
+<li>创建新仓库，仓库名称必须是<code>用户名.github.io</code></li>
+<li>安装<code>hexo</code>部署插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件<code>_config.yml</code><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">自己GitHub仓库的地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
+<li>推送到<code>github</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure></li>
+<li>访问<code>https://自己的用户名.github.io</code>即可进入首页</li>
+</ol>
+<h5 id="7-修改主题"><a href="#7-修改主题" class="headerlink" title="7.修改主题"></a>7.修改主题</h5><blockquote>
+<p>参考主题样式：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a></p>
+</blockquote>
+<ol>
+<li>在<code>theme</code>目录下<code>git clone</code>自己喜欢的主题</li>
+<li>修改<code>_config.yml</code>，找到<code>theme</code>，修改名称为刚刚下载的主题名称</li>
+<li>在控制台清理<code>hexo</code>缓存<blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li>重新生成<code>hexo</code>样式<blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li>部署到<code>github</code><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搭建博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-hexo%EF%BC%88github%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-搭建博客-halo（ubuntu）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-halo%EF%BC%88ubuntu%EF%BC%89/">搭建博客-halo（ubuntu）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-halo%EF%BC%88ubuntu%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-04-03T13:17:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>官网地址：<a href="https://halo.run/" target="_blank" rel="noopener">https://halo.run/</a></p>
+</blockquote>
+<h5 id="1-下载-Halo-运行包"><a href="#1-下载-Halo-运行包" class="headerlink" title="1. 下载 Halo 运行包"></a>1. 下载 Halo 运行包</h5><blockquote>
+<p><a href="https://github.com/halo-dev/halo/releases" target="_blank" rel="noopener">https://github.com/halo-dev/halo/releases</a></p>
+</blockquote>
+<h5 id="2-运行"><a href="#2-运行" class="headerlink" title="2. 运行"></a>2. 运行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 打开tmux</span><br><span class="line">tmux</span><br><span class="line"># 运行</span><br><span class="line">java -jar halo-1.2.0.jar</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搭建博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-halo%EF%BC%88ubuntu%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-搭建博客-typecho（ubuntu）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-typecho%EF%BC%88ubuntu%EF%BC%89/">搭建博客-typecho（ubuntu）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-typecho%EF%BC%88ubuntu%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-04-03T13:04:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-安装宝塔Linux面板（最好在纯净的linux系统中）"><a href="#1-安装宝塔Linux面板（最好在纯净的linux系统中）" class="headerlink" title="1. 安装宝塔Linux面板（最好在纯净的linux系统中）"></a>1. 安装宝塔Linux面板（最好在纯净的linux系统中）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.sh http:&#x2F;&#x2F;download.bt.cn&#x2F;install&#x2F;install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记录下自己的Bt-Panel，username和password</p>
+</blockquote>
+<p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_1.png" alt="avatar"></p>
+<h5 id="2-登录Bt-Panel的网址-输入刚才记录的账号和密码，点击进入面板"><a href="#2-登录Bt-Panel的网址-输入刚才记录的账号和密码，点击进入面板" class="headerlink" title="2. 登录Bt-Panel的网址,输入刚才记录的账号和密码，点击进入面板"></a>2. 登录<code>Bt-Panel</code>的网址,输入刚才记录的账号和密码，点击进入面板</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_2.png" alt="avatar"></p>
+<h5 id="3-将php版本改为7-2，选择LNMP安装，等待安装即可"><a href="#3-将php版本改为7-2，选择LNMP安装，等待安装即可" class="headerlink" title="3. 将php版本改为7.2，选择LNMP安装，等待安装即可"></a>3. 将php版本改为7.2，选择LNMP安装，等待安装即可</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_3.png" alt="avatar"><br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_4.png" alt="avatar"></p>
+<h5 id="4-在应用商店中安装宝塔一键部署源码-1-1工具，打开该工具的设置"><a href="#4-在应用商店中安装宝塔一键部署源码-1-1工具，打开该工具的设置" class="headerlink" title="4. 在应用商店中安装宝塔一键部署源码 1.1工具，打开该工具的设置"></a>4. 在应用商店中安装<code>宝塔一键部署源码 1.1</code>工具，打开该工具的设置</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_4.png" alt="avatar"></p>
+<h5 id="5-设置网站伪静态"><a href="#5-设置网站伪静态" class="headerlink" title="5. 设置网站伪静态"></a>5. 设置网站伪静态</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_6.png" alt="avatar"></p>
+<h5 id="6-访问站点地址进行初始化"><a href="#6-访问站点地址进行初始化" class="headerlink" title="6. 访问站点地址进行初始化"></a>6. 访问站点地址进行初始化</h5><blockquote>
+<p>数据库信息填写之前弹出的数据库信息，忘记的可以在左侧数据库栏中查看。</p>
+</blockquote>
+<blockquote>
+<p>管理员账号的用户名和密码自己进行设置。</p>
+</blockquote>
+<p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_7.png" alt="avatar"><br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_8.png" alt="avatar"></p>
+<h5 id="7-再次访问站点即可看到博客已完成部署"><a href="#7-再次访问站点即可看到博客已完成部署" class="headerlink" title="7. 再次访问站点即可看到博客已完成部署"></a>7. 再次访问站点即可看到博客已完成部署</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_9.png" alt="avatar"></p>
+<h5 id="8-更换模板"><a href="#8-更换模板" class="headerlink" title="8. 更换模板"></a>8. 更换模板</h5><blockquote>
+<p><a href="https://typecho.me/" target="_blank" rel="noopener">https://typecho.me/</a></p>
+</blockquote>
+<p>下载选好的模板到本地，<br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_10.png" alt="avatar"></p>
+<h5 id="9-进入域名或者ip地址-admin页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。"><a href="#9-进入域名或者ip地址-admin页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。" class="headerlink" title="9. 进入域名或者ip地址/admin页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。"></a>9. 进入<code>域名或者ip地址/admin</code>页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_11.png" alt="avatar"><br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_12.png" alt="avatar"></p>
+<hr>
+<blockquote>
+<p>资源消耗：</p>
+<p>安装前：</p>
+</blockquote>
+<p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_%E5%AE%89%E8%A3%85%E5%89%8D%E8%B5%84%E6%BA%90.png" alt="avatar"></p>
+<blockquote>
+<p>安装后：</p>
+</blockquote>
+<p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_%E5%AE%89%E8%A3%85%E5%90%8E%E8%B5%84%E6%BA%90.png" alt="avatar"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搭建博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-typecho%EF%BC%88ubuntu%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
   
 
@@ -557,9 +619,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
