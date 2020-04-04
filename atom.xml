@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-03T13:57:55.084Z</updated>
+  <updated>2020-04-04T04:04:39.068Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pip-更换阿里云源（windows）</title>
+    <link href="http://yoursite.com/2020/04/04/pip-%E6%9B%B4%E6%8D%A2%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90%EF%BC%88windows%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/04/pip-%E6%9B%B4%E6%8D%A2%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90%EF%BC%88windows%EF%BC%89/</id>
+    <published>2020-04-04T04:03:52.000Z</published>
+    <updated>2020-04-04T04:04:39.068Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="1-在C-Users-Elijah-pip目录下创建pip-ini文件"><a href="#1-在C-Users-Elijah-pip目录下创建pip-ini文件" class="headerlink" title="1.在C:\Users\Elijah\pip目录下创建pip.ini文件"></a>1.在<code>C:\Users\Elijah\pip</code>目录下创<code>建pip.ini</code>文件</h5><blockquote><p>如果没有该目录则手动创建</p></blockquote><h5 id="2-在里面输入下面的内容"><a href="#2-在里面输入下面的内容" class="headerlink" title="2.在里面输入下面的内容"></a>2.在里面输入下面的内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url &#x3D; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F; </span><br><span class="line">[install]</span><br><span class="line">trusted-host &#x3D; mirrors.aliyun.com</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;1-在C-Users-Elijah-pip目录下创建pip-ini文件&quot;&gt;&lt;a href=&quot;#1-在C-Users-Elijah-pip目录下创建pip-ini文件&quot; class=&quot;headerlink&quot; title=&quot;1.在C:\Users\Elijah\pip
+      
+    
+    </summary>
+    
+    
+      <category term="pip" scheme="http://yoursite.com/categories/pip/"/>
+    
+    
+      <category term="pip" scheme="http://yoursite.com/tags/pip/"/>
+    
+  </entry>
   
   <entry>
     <title>解决Host key verification failed</title>
