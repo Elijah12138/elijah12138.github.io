@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-04T04:17:20.709Z</updated>
+  <updated>2020-04-06T03:40:58.424Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,501 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python-socket通信（udp）</title>
+    <link href="http://yoursite.com/2020/04/06/python-socket%E9%80%9A%E4%BF%A1%EF%BC%88udp%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/python-socket%E9%80%9A%E4%BF%A1%EF%BC%88udp%EF%BC%89/</id>
+    <published>2020-04-06T03:38:12.000Z</published>
+    <updated>2020-04-06T03:40:58.424Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HOST = <span class="string">'0.0.0.0'</span></span><br><span class="line">PORT = <span class="number">8080</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AF_INET表示ipv4地址，SOCK_DGRAM表示UDP地址</span></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 绑定ip和端口</span></span><br><span class="line">s.bind((HOST, PORT))</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data, addr = s.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'receive: &#123;&#125; from &#123;&#125;'</span>.format(data, addr))</span><br><span class="line"></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure><pre><code>receive: b&apos;test udp&apos; from (&apos;127.0.0.1&apos;, 52349)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h5 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HOST = <span class="string">'127.0.0.1'</span></span><br><span class="line">PORT = <span class="number">8080</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AF_INET表示ipv4地址，SOCK_DGRAM表示UDP地址</span></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = <span class="string">'test udp'</span></span><br><span class="line">s.sendto(data.encode(<span class="string">'utf-8'</span>), (HOST, PORT))</span><br><span class="line">print(<span class="string">'sent: &#123;&#125; to &#123;&#125;:&#123;&#125;'</span>.format(data, HOST, PORT))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭链接</span></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure><pre><code>sent: test udp to 127.0.0.1:8080</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;服务端&quot;&gt;&lt;a href=&quot;#服务端&quot; class=&quot;headerlink&quot; title=&quot;服务端&quot;&gt;&lt;/a&gt;服务端&lt;/h5&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python-socket通信（tcp）</title>
+    <link href="http://yoursite.com/2020/04/06/python-socket%E9%80%9A%E4%BF%A1%EF%BC%88tcp%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/python-socket%E9%80%9A%E4%BF%A1%EF%BC%88tcp%EF%BC%89/</id>
+    <published>2020-04-06T03:38:03.000Z</published>
+    <updated>2020-04-06T03:39:52.923Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> datetime</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HOST = <span class="string">'0.0.0.0'</span></span><br><span class="line">PORT = <span class="number">8080</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AF_INET表示ipv4地址，SOCK_STREAM表示tcp地址</span></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"><span class="comment"># 绑定ip和端口</span></span><br><span class="line">s.bind((HOST, PORT))</span><br><span class="line"><span class="comment"># 监听</span></span><br><span class="line">s.listen(<span class="number">1</span>)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    conn, addr = s.accept()</span><br><span class="line">    print(<span class="string">'cllient &#123;&#125; connect'</span>.format(str(addr)))</span><br><span class="line">    dt = datetime.datetime.now()</span><br><span class="line">    message = <span class="string">'current time is &#123;&#125;'</span>.format(str(dt))</span><br><span class="line">    <span class="comment"># 向客户端发送当前时间</span></span><br><span class="line">    conn.send(message.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    print(<span class="string">'sent:'</span>, message)</span><br><span class="line">    <span class="comment"># 关闭连接</span></span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure><pre><code>cllient (&apos;127.0.0.1&apos;, 2968) connectsent: current time is 2020-04-06 10:23:58.975459</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h5 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HOST = <span class="string">'127.0.0.1'</span></span><br><span class="line">PORT = <span class="number">8080</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AF_INET表示ipv4地址，SOCK_STREAM表示tcp地址</span></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s.connect((HOST, PORT))</span><br><span class="line">print(<span class="string">'connect &#123;&#125;, &#123;&#125; '</span>.format(HOST, PORT))</span><br><span class="line"><span class="comment"># 接收数据，接收数据的最大长度为1024</span></span><br><span class="line">data = s.recv(<span class="number">1024</span>)</span><br><span class="line">print(<span class="string">'receive: &#123;&#125;'</span>.format(data))</span><br><span class="line"><span class="comment"># 关闭连接</span></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure><pre><code>connect 127.0.0.1, 8080 receive: b&apos;current time is 2020-04-06 10:23:58.975459&apos;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;服务端&quot;&gt;&lt;a href=&quot;#服务端&quot; class=&quot;headerlink&quot; title=&quot;服务端&quot;&gt;&lt;/a&gt;服务端&lt;/h5&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-二进制中1的个数（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:35:10.000Z</published>
+    <updated>2020-04-06T03:35:26.422Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。<br>补码：正数不变，负数是正数的反码+1</p></blockquote><h6 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h6><ol><li>将数字转换为二进制表示<code>Integer.toBinaryString(n).toCharArray();</code></li><li>依次判断数组的值是否为1，并计数</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] ch a= Integer.toBinaryString(n).toCharArray();</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : ch) &#123;</span><br><span class="line">            <span class="keyword">if</span> (String.valueOf(c).equals(<span class="string">"1"</span>)) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。&lt;br&gt;补码：正数不变，负数是正数的反码+1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;h
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-矩形覆盖（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:34:44.000Z</published>
+    <updated>2020-04-06T03:34:59.634Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>我们可以用2<em>1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2</em>1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol><li><code>2*1</code>的矩形在填充时有两种情况，一种是竖着，剩下的区域就变成了<code>（n-1）</code>的问题</li><li>如果矩形横着填充，剩下的区域就变成了<code>（n-2）</code>的问题</li><li>当最后剩下一列时，只有一种填充方法，<code>rectCover[0] = 1</code></li><li>当最后剩下两列时，有两种填充方法，<code>rectCover[1] = 2</code></li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">RectCover</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> target;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] rectCover = <span class="keyword">new</span> <span class="keyword">int</span>[target];</span><br><span class="line">        rectCover[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        rectCover[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; target; i++) &#123;</span><br><span class="line">            rectCover[i] = rectCover[i - <span class="number">1</span>] + rectCover[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rectCover[target - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;我们可以用2&lt;em&gt;1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2&lt;/em&gt;1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a hre
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-重建二叉树（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:34:11.000Z</published>
+    <updated>2020-04-06T03:34:27.484Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列<code>{1,2,4,7,3,5,6,8}</code>和中序遍历序列<code>{4,7,2,1,5,3,8,6}</code>，则重建二叉树并返回。</p></blockquote><h6 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h6><ol><li>前序排列的第一个数值即为当前树的根节点，在中序排列中找到这一个数值，可以将中序排列分成两部分，同时也可以根据这两部分的个数将前序排列也分成两部分。这样前序排列的第一部分和中序排列的第一部分就组成了一颗新的树</li><li>递归，每棵树创建一个根节点，在连接上返回的左子树和右子树</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">reConstructBinaryTree</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pre.length == <span class="number">0</span> || in.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pre.length != in.length) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> root = pre[<span class="number">0</span>];</span><br><span class="line">        TreeNode rootNode = <span class="keyword">new</span> TreeNode(root);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; in.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (in[i] == root) &#123;</span><br><span class="line">                pos = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span>[] inLeft = Arrays.copyOfRange(in, <span class="number">0</span>, pos);</span><br><span class="line">        <span class="keyword">int</span>[] inRight = Arrays.copyOfRange(in, pos + <span class="number">1</span>, in.length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] preLeft = Arrays.copyOfRange(pre, <span class="number">1</span>, pos + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span>[] preRight = Arrays.copyOfRange(pre, pos + <span class="number">1</span>, pre.length);</span><br><span class="line"></span><br><span class="line">        TreeNode leftNode = reConstructBinaryTree(preLeft, inLeft);</span><br><span class="line">        TreeNode rightNode = reConstructBinaryTree(preRight, inRight);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (leftNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            rootNode.left = leftNode;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (rightNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            rootNode.right = rightNode;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> rootNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列&lt;code&gt;{1,2,4,7,3,5,6,8}&lt;/code&gt;和中序遍历序列&lt;code&gt;{4
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-从尾到头打印链表（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:33:45.000Z</published>
+    <updated>2020-04-06T03:33:58.773Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>输入一个链表，按链表从尾到头的顺序返回一个<code>ArrayList</code>。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><p>因为单链表只能顺序读取，所以创建一个栈存储单链表中的值，在将栈中的值<code>pop</code>到<code>ArrayList</code>中</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*    public class ListNode &#123;</span></span><br><span class="line"><span class="comment">*        int val;</span></span><br><span class="line"><span class="comment">*        ListNode next = null;</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*        ListNode(int val) &#123;</span></span><br><span class="line"><span class="comment">*            this.val = val;</span></span><br><span class="line"><span class="comment">*        &#125;</span></span><br><span class="line"><span class="comment">*    &#125;</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (listNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (listNode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                s.push(listNode.val);</span><br><span class="line">                listNode = listNode.next;</span><br><span class="line">            &#125;</span><br><span class="line">            s.push(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList&lt;Integer&gt; retList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            retList.add(s.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> retList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;输入一个链表，按链表从尾到头的顺序返回一个&lt;code&gt;ArrayList&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路：&quot; class=&quot;headerlin
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-变态跳台阶（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:33:18.000Z</published>
+    <updated>2020-04-06T03:33:32.434Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述:</p><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><p>f(n) = f(n-1) + f(n-2) + …… + f(1)<br>f(1) = 1<br>f(2) = 2<br>依次类推<br>f(n) = 2 * f(n-1)</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorII</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; target; i++) &#123;</span><br><span class="line">            ret += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述:&lt;/p&gt;
+&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路：&quot; class
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-反转链表（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:32:48.000Z</published>
+    <updated>2020-04-06T03:33:04.659Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>输入一个链表，反转链表后，输出新链表的表头。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol><li>设置三个指针，第一个指向准备转换节点的前一个节点，一个指向准备转换的节点，最后一个指向准备转换节点的下一个节点；</li><li>循环如果最后一个节点不为空，midNode指向leftNode，leftNode = midNode，midNode = rightNode，rightNode后移一位</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode next = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    ListNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">ReverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (head.next == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line">        ListNode leftNode = head;</span><br><span class="line">        ListNode midNode = head.next;</span><br><span class="line">        ListNode rightNode = midNode.next;</span><br><span class="line"></span><br><span class="line">        leftNode.next = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (rightNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            midNode.next = leftNode;</span><br><span class="line">            leftNode = midNode;</span><br><span class="line">            midNode = rightNode;</span><br><span class="line">            rightNode = rightNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        midNode.next = leftNode;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> midNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;输入一个链表，反转链表后，输出新链表的表头。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路：&quot; class=&quot;headerlink&quot; title=&quot;解题思路：&quot;&gt;&lt;/a&gt;解
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-合并两个排序的链表（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:32:10.000Z</published>
+    <updated>2020-04-06T03:32:27.759Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol><li>首先判断两个链表的头指针哪一个小，就选哪个作为头指针</li><li>循环遍历哪一个链表的值较小，previousNode.next就指向哪一个</li><li>再将没有遍历完的链表接到previousNode的后面</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode next = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    ListNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">Merge</span><span class="params">(ListNode list1,ListNode list2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (list1 == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        <span class="keyword">if</span> (list2 == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line"></span><br><span class="line">        ListNode newHead = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (list1.val &lt; list2.val)</span><br><span class="line">            newHead = list1;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            newHead = list2;</span><br><span class="line"></span><br><span class="line">        ListNode pTmp1 = list1;</span><br><span class="line">        ListNode pTmp2 = list2;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (newHead == list1) &#123;</span><br><span class="line">            pTmp1 = pTmp1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pTmp2 = pTmp2.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode previousNode = newHead;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (pTmp1!= <span class="keyword">null</span> &amp;&amp; pTmp2 != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (pTmp1.val &lt; pTmp2.val) &#123;</span><br><span class="line">                previousNode.next = pTmp1;</span><br><span class="line">                previousNode = pTmp1;</span><br><span class="line">                pTmp1 = pTmp1.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                previousNode.next = pTmp2;</span><br><span class="line">                previousNode = pTmp2;</span><br><span class="line">                pTmp2 = pTmp2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pTmp1 == <span class="keyword">null</span>)</span><br><span class="line">            previousNode.next = pTmp2;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            previousNode.next = pTmp1;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路：&quot; class=&quot;headerl
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-替换空格（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:31:42.000Z</published>
+    <updated>2020-04-06T03:31:57.057Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>请实现一个函数，将一个字符串中的每个空格替换成<code>%20</code>。例如，当字符串为<code>We Are Happy</code>.则经过替换之后的字符串为<code>We%20Are%20Happy</code>。</p></blockquote><h6 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h6><ol><li>直接用java的replace方法</li><li>或者自己实现替换方法</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">replaceSpace</span><span class="params">(StringBuffer str)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        return str.toString().replace(" ", "%20");</span></span><br><span class="line"></span><br><span class="line">        String[] strs = str.toString().split (<span class="string">""</span>);</span><br><span class="line">        String retStr = <span class="string">""</span>;</span><br><span class="line">        String temp = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> strLen = str.toString().length();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = strLen - <span class="number">1</span>; i &gt; -<span class="number">1</span>; --i) &#123;</span><br><span class="line">            temp = strs[i] + <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">if</span> (temp.equals(<span class="string">" "</span>)) &#123;</span><br><span class="line">                retStr += <span class="string">"02%"</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                retStr += temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> StringBuilder(retStr).reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;请实现一个函数，将一个字符串中的每个空格替换成&lt;code&gt;%20&lt;/code&gt;。例如，当字符串为&lt;code&gt;We Are Happy&lt;/code&gt;.则经过替换之后的字符串为&lt;code&gt;We%20Are%20Happy&lt;/c
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-用两个栈实现队列（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:31:14.000Z</published>
+    <updated>2020-04-06T03:31:30.284Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>用两个栈来实现一个队列，完成队列的<code>Push</code>和<code>Pop</code>操作。 队列中的元素为<code>int</code>类型。</p></blockquote><h6 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h6><ol><li>队列<code>push</code>时，将值保存在<code>stack1</code>中</li><li>队列<code>pop</code>时，首先将<code>stack2</code>的值<code>pop</code>到<code>stack1</code>中，这样就实现了逆序，此时<code>stack2</code>最顶端的值即为需要弹出的值。<code>stack2</code>弹出后再将<code>stack2</code>的值存放到<code>stack1</code>中</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack1.empty()) &#123;</span><br><span class="line">            stack2.push(stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ret = stack2.pop();</span><br><span class="line">        <span class="keyword">while</span> (!stack2.empty())&#123;</span><br><span class="line">            stack1.push(stack2.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;用两个栈来实现一个队列，完成队列的&lt;code&gt;Push&lt;/code&gt;和&lt;code&gt;Pop&lt;/code&gt;操作。 队列中的元素为&lt;code&gt;int&lt;/code&gt;类型。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-二维数组中的查找（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:30:26.000Z</published>
+    <updated>2020-04-06T03:30:44.760Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p></blockquote><h6 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h6><p>每次将最右上角的数字跟目标数字进行比较，会产生三种情况：</p><ol><li>最右上角的数字跟目标数字相同，返回<code>true</code></li><li>最右上角的数字大于目标数字，说明目标数字可能存在于该列的左方，<code>col--</code></li><li>最右上角的数字小于目标数字，说明目标数字可能存在于该行的下方，<code>row++</code></li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span>[][] array)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> col = array[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (row &lt; array.length &amp;&amp; col &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[row][col] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[row][col] &lt; target) &#123;</span><br><span class="line">                row++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                col--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。&lt;/p&gt;
+&lt;/blockquo
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-旋转数组的最小数字（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:29:22.000Z</published>
+    <updated>2020-04-06T03:30:08.033Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。<br>输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。<br>例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。<br>NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol><li>选取中值，比较中值跟最右边值的大小，会有三种情况：</li><li>如果中值等于最右边的值，直接输出</li><li>如果中值大于最右边的值，最小值在中值的右边</li><li>如果中值小于最右边的值，最小值在中值的左边</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = array.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (array.length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (mid == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (array[mid] &gt; array[mid + <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> array[mid + <span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> array[mid];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &lt; array[mid - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> array[mid];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &lt;= array[right]) &#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。&lt;br&gt;输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。&lt;br&gt;例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-斐波那契数列（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:28:52.000Z</published>
+    <updated>2020-04-06T03:29:08.521Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。<br>n&lt;=39</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><p>设置一个数组来保存斐波那契数列的值，第一个数值为0，第二个数值为1，依次递推</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">40</span>];</span><br><span class="line">        temp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        temp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> temp[n];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            temp[i] = temp[i - <span class="number">1</span>] + temp[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。&lt;br&gt;n&amp;lt;=39&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-数值的正数次方（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%95%B0%E5%80%BC%E7%9A%84%E6%AD%A3%E6%95%B0%E6%AC%A1%E6%96%B9%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%95%B0%E5%80%BC%E7%9A%84%E6%AD%A3%E6%95%B0%E6%AC%A1%E6%96%B9%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:28:19.000Z</published>
+    <updated>2020-04-06T03:28:37.795Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。<br>保证base和exponent不同时为0</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol><li>首先判断exponent的正负，如果为负数就取绝对值，并赋值给exponentPos</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">Power</span><span class="params">(<span class="keyword">double</span> base, <span class="keyword">int</span> exponent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> power = <span class="number">1.0</span>;</span><br><span class="line">        <span class="keyword">int</span> exponentPos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (exponent &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            exponentPos = Math.abs(exponent);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            exponentPos = exponent;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; exponentPos; i++) &#123;</span><br><span class="line">            power *= base;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (exponent &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            power = <span class="number">1</span> / power;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> power;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。&lt;br&gt;保证base和exponent不同时为0&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-跳台阶（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E8%B7%B3%E5%8F%B0%E9%98%B6%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E8%B7%B3%E5%8F%B0%E9%98%B6%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:27:37.000Z</published>
+    <updated>2020-04-06T03:28:05.332Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述：</p><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloor</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">9999</span>];</span><br><span class="line">        ret[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        ret[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; target; i++) &#123;</span><br><span class="line">            ret[i] = ret[i - <span class="number">1</span>] + ret[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret[target - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路：&quot; c
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-链表中倒数第k个结点（java）</title>
+    <link href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%EF%BC%88java%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%EF%BC%88java%EF%BC%89/</id>
+    <published>2020-04-06T03:26:10.000Z</published>
+    <updated>2020-04-06T03:27:13.282Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题描述:</p><p>输入一个链表，输出该链表中倒数第k个结点。</p></blockquote><h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol><li>设置两个指针，间隔为k</li><li>第一个指针先前进k。然后循环，如果第一个指针不为空，则两个指针都前进1，否则返回第二个指针</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode next = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    ListNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">FindKthToTail</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        ListNode firstNode = head;</span><br><span class="line">        ListNode secondNode = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (firstNode == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            firstNode = firstNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (firstNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            firstNode = firstNode.next;</span><br><span class="line">            secondNode = secondNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> secondNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;问题描述:&lt;/p&gt;
+&lt;p&gt;输入一个链表，输出该链表中倒数第k个结点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&quot;解题思路：&quot;&gt;&lt;a href=&quot;#解题思路：&quot; class=&quot;headerlink&quot; title=&quot;解题思路：&quot;&gt;&lt;/a&gt;解题
+      
+    
+    </summary>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot-配置sqlite数据库</title>
@@ -91,379 +586,6 @@
     
     
       <category term="解决Host key verification failed" scheme="http://yoursite.com/tags/%E8%A7%A3%E5%86%B3Host-key-verification-failed/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS-控制div显示和隐藏</title>
-    <link href="http://yoursite.com/2020/04/03/JS-%E6%8E%A7%E5%88%B6div%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F/"/>
-    <id>http://yoursite.com/2020/04/03/JS-%E6%8E%A7%E5%88%B6div%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F/</id>
-    <published>2020-04-03T13:53:39.000Z</published>
-    <updated>2020-04-04T04:20:26.319Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="触发按钮"><a href="#触发按钮" class="headerlink" title="触发按钮"></a>触发按钮</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"show"</span> <span class="attr">onclick</span>=<span class="string">"show()"</span>&gt;</span>显示div<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><h5 id="隐藏div"><a href="#隐藏div" class="headerlink" title="隐藏div"></a>隐藏<code>div</code></h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: none;"</span> <span class="attr">id</span>=<span class="string">"hidden"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>hidden<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><h5 id="显示事件"><a href="#显示事件" class="headerlink" title="显示事件"></a>显示事件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> div=<span class="built_in">document</span>.getElementById(<span class="string">"hidden"</span>);</span><br><span class="line">div.style.display=<span class="string">'block'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h5 id="隐藏事件"><a href="#隐藏事件" class="headerlink" title="隐藏事件"></a>隐藏事件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> div=<span class="built_in">document</span>.getElementById(<span class="string">"hidden"</span>);</span><br><span class="line">div.style.display=<span class="string">'none'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;触发按钮&quot;&gt;&lt;a href=&quot;#触发按钮&quot; class=&quot;headerlink&quot; title=&quot;触发按钮&quot;&gt;&lt;/a&gt;触发按钮&lt;/h5&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre
-      
-    
-    </summary>
-    
-    
-      <category term="JS/JQuery" scheme="http://yoursite.com/categories/JS-JQuery/"/>
-    
-    
-      <category term="JS/JQuery" scheme="http://yoursite.com/tags/JS-JQuery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS-获取网页高度和宽度</title>
-    <link href="http://yoursite.com/2020/04/03/JS-%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E9%AB%98%E5%BA%A6%E5%92%8C%E5%AE%BD%E5%BA%A6/"/>
-    <id>http://yoursite.com/2020/04/03/JS-%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E9%AB%98%E5%BA%A6%E5%92%8C%E5%AE%BD%E5%BA%A6/</id>
-    <published>2020-04-03T13:52:54.000Z</published>
-    <updated>2020-04-04T04:23:28.185Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">网页可见区域宽： <span class="built_in">document</span>.body.clientWidth</span><br><span class="line">网页可见区域高： <span class="built_in">document</span>.body.clientHeight</span><br><span class="line">网页可见区域宽： <span class="built_in">document</span>.body.offsetWidth (包括边线的宽)</span><br><span class="line">网页可见区域高： <span class="built_in">document</span>.body.offsetHeight (包括边线的高)</span><br><span class="line">网页正文全文宽： <span class="built_in">document</span>.body.scrollWidth</span><br><span class="line">网页正文全文高： <span class="built_in">document</span>.body.scrollHeight</span><br><span class="line">网页被卷去的高： <span class="built_in">document</span>.body.scrollTop</span><br><span class="line">网页被卷去的左： <span class="built_in">document</span>.body.scrollLeft</span><br><span class="line">网页正文部分上： <span class="built_in">window</span>.screenTop</span><br><span class="line">网页正文部分左： <span class="built_in">window</span>.screenLeft</span><br><span class="line">屏幕分辨率的高： <span class="built_in">window</span>.screen.height</span><br><span class="line">屏幕分辨率的宽： <span class="built_in">window</span>.screen.width</span><br><span class="line">屏幕可用工作区高度： <span class="built_in">window</span>.screen.availHeight</span><br><span class="line">屏幕可用工作区宽度： <span class="built_in">window</span>.screen.availWidth</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span 
-      
-    
-    </summary>
-    
-    
-      <category term="JS/JQuery" scheme="http://yoursite.com/categories/JS-JQuery/"/>
-    
-    
-      <category term="JS/JQuery" scheme="http://yoursite.com/tags/JS-JQuery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JQuery-发送ajax请求</title>
-    <link href="http://yoursite.com/2020/04/03/JQuery-%E5%8F%91%E9%80%81ajax%E8%AF%B7%E6%B1%82/"/>
-    <id>http://yoursite.com/2020/04/03/JQuery-%E5%8F%91%E9%80%81ajax%E8%AF%B7%E6%B1%82/</id>
-    <published>2020-04-03T13:50:56.000Z</published>
-    <updated>2020-04-04T04:20:04.032Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 引入jquery</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;jquery&#x2F;1.10.2&#x2F;jquery.min.js&quot;&gt;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">var retAjaxData &#x3D; [];</span><br><span class="line"></span><br><span class="line">function sendAjax(url, type, data) &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        async: false,</span><br><span class="line">        url: url,</span><br><span class="line">        type: type,</span><br><span class="line">        dataType: &#39;json&#39;,</span><br><span class="line">        contentType: &#39;application&#x2F;json;charset&#x3D;UTF-8&#39;,</span><br><span class="line">        data: JSON.stringify(data),</span><br><span class="line">        success: function (retDate) &#123;</span><br><span class="line">            retAjaxData &#x3D; retDate;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-    
-      <category term="JS/JQuery" scheme="http://yoursite.com/categories/JS-JQuery/"/>
-    
-    
-      <category term="JS/JQuery" scheme="http://yoursite.com/tags/JS-JQuery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux（ubuntu）-配置java环境</title>
-    <link href="http://yoursite.com/2020/04/03/Linux%EF%BC%88ubuntu%EF%BC%89-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/"/>
-    <id>http://yoursite.com/2020/04/03/Linux%EF%BC%88ubuntu%EF%BC%89-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/</id>
-    <published>2020-04-03T13:49:13.000Z</published>
-    <updated>2020-04-04T04:20:35.093Z</updated>
-    
-    <content type="html"><![CDATA[<hr><h5 id="1-下载JDK"><a href="#1-下载JDK" class="headerlink" title="1. 下载JDK"></a>1. 下载JDK</h5><blockquote><p>下载地址：<a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank" rel="noopener">https://www.oracle.com/java/technologies/javase-downloads.html</a></p></blockquote><blockquote><p>国内镜像地址：<a href="https://repo.huaweicloud.com/java/" target="_blank" rel="noopener">https://repo.huaweicloud.com/java/</a></p></blockquote><h5 id="2-创建文件夹，将jdk文件放在该文件中，并解压"><a href="#2-创建文件夹，将jdk文件放在该文件中，并解压" class="headerlink" title="2. 创建文件夹，将jdk文件放在该文件中，并解压"></a>2. 创建文件夹，将jdk文件放在该文件中，并解压</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;usr&#x2F;java</span><br><span class="line"># 给java文件夹赋予最高权限</span><br><span class="line">chmod 777 &#x2F;usr&#x2F;java&#x2F;</span><br><span class="line"># 将下载的文件放到&#x2F;usr&#x2F;java文件夹中，推荐winscp</span><br></pre></td></tr></table></figure><h5 id="3-进入java文件夹，并解压jdk文件"><a href="#3-进入java文件夹，并解压jdk文件" class="headerlink" title="3. 进入java文件夹，并解压jdk文件"></a>3. 进入java文件夹，并解压jdk文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u191-linux-x64.tar.gz</span><br></pre></td></tr></table></figure><h5 id="4-配置java"><a href="#4-配置java" class="headerlink" title="4. 配置java"></a>4. 配置java</h5><p>编辑<code>/etc/profile</code>文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure><p>在文件最后添加：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.8.0_191</span><br><span class="line">export JRE_HOME&#x3D;$&#123;JAVA_HOME&#125;&#x2F;jre</span><br><span class="line">export CLASSPATH&#x3D;.:$&#123;JAVA_HOME&#125;&#x2F;lib:$&#123;JRE_HOME&#125;&#x2F;lib</span><br><span class="line">export PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH</span><br></pre></td></tr></table></figure><p><code>ESC</code>在控制台最底端输入<code>:wq</code>进行保存。</p><p>激活配置文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure><h5 id="5-测试"><a href="#5-测试" class="headerlink" title="5. 测试"></a>5. 测试</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure><p>提示信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.8.0_191&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_191-b12)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.191-b12, mixed mode)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;hr&gt;
-&lt;h5 id=&quot;1-下载JDK&quot;&gt;&lt;a href=&quot;#1-下载JDK&quot; class=&quot;headerlink&quot; title=&quot;1. 下载JDK&quot;&gt;&lt;/a&gt;1. 下载JDK&lt;/h5&gt;&lt;blockquote&gt;
-&lt;p&gt;下载地址：&lt;a href=&quot;https://www.orac
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux-部署项目</title>
-    <link href="http://yoursite.com/2020/04/03/Linux-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/"/>
-    <id>http://yoursite.com/2020/04/03/Linux-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/</id>
-    <published>2020-04-03T13:45:45.000Z</published>
-    <updated>2020-04-04T04:20:42.274Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="1-通过winscp将文件上传至服务器"><a href="#1-通过winscp将文件上传至服务器" class="headerlink" title="1. 通过winscp将文件上传至服务器"></a>1. 通过winscp将文件上传至服务器</h5><h5 id="2-下载tmux"><a href="#2-下载tmux" class="headerlink" title="2. 下载tmux"></a>2. 下载<code>tmux</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux</span><br></pre></td></tr></table></figure><h5 id="3-打开tmux"><a href="#3-打开tmux" class="headerlink" title="3. 打开tmux"></a>3. 打开<code>tmux</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure><h5 id="4-运行代码"><a href="#4-运行代码" class="headerlink" title="4. 运行代码"></a>4. 运行代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ***.jar</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;1-通过winscp将文件上传至服务器&quot;&gt;&lt;a href=&quot;#1-通过winscp将文件上传至服务器&quot; class=&quot;headerlink&quot; title=&quot;1. 通过winscp将文件上传至服务器&quot;&gt;&lt;/a&gt;1. 通过winscp将文件上传至服务器&lt;/h5&gt;&lt;h5
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阿里云-OSS简单使用（JAVA）</title>
-    <link href="http://yoursite.com/2020/04/03/%E9%98%BF%E9%87%8C%E4%BA%91-OSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88JAVA%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/04/03/%E9%98%BF%E9%87%8C%E4%BA%91-OSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88JAVA%EF%BC%89/</id>
-    <published>2020-04-03T13:42:43.000Z</published>
-    <updated>2020-04-04T04:21:21.164Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.安装</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><ol start="2"><li>配置accesskey<br>在springboot项目中创建<code>accesskey.properties</code>文件，内容如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">endpoint&#x3D;对象存储的地域节点</span><br><span class="line">accessKeyId&#x3D;最好使用访问控制 RAM</span><br><span class="line">accessKeySecret&#x3D;***</span><br><span class="line">bucketName&#x3D;***</span><br></pre></td></tr></table></figure></li><li>创建<code>OSSUtils</code>功能类进行测试<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] getAccessKey() &#123;</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        String projectPath = System.getProperty(<span class="string">"user.dir"</span>);</span><br><span class="line">        String[] str = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line">        String accessProperties = projectPath + <span class="string">"\\src\\main\\java\\设置为自己项目的路径\\accesskey.properties"</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(accessProperties));</span><br><span class="line">            prop.load(in);     <span class="comment">///加载属性列表</span></span><br><span class="line">            str[<span class="number">0</span>] = prop.getProperty(<span class="string">"endpoint"</span>);</span><br><span class="line">            str[<span class="number">1</span>] = prop.getProperty(<span class="string">"accessKeyId"</span>);</span><br><span class="line">            str[<span class="number">2</span>] = prop.getProperty(<span class="string">"accessKeySecret"</span>);</span><br><span class="line">            str[<span class="number">3</span>] = prop.getProperty(<span class="string">"bucketName"</span>);</span><br><span class="line">            in.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li>查询所有文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFilesMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造ListObjectsRequest请求。</span></span><br><span class="line">        ListObjectsRequest listObjectsRequest = <span class="keyword">new</span> ListObjectsRequest(bucketName);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 列出文件。</span></span><br><span class="line">        ObjectListing listing = ossClient.listObjects(listObjectsRequest);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历所有文件。</span></span><br><span class="line">        System.out.println(<span class="string">"Objects:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (OSSObjectSummary objectSummary : listing.getObjectSummaries()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"getKey = "</span> + objectSummary.getKey());</span><br><span class="line">            System.out.println(<span class="string">"getSize = "</span> + objectSummary.getSize());</span><br><span class="line">            System.out.println(<span class="string">"getBucketName = "</span> + objectSummary.getBucketName());</span><br><span class="line">            System.out.println(<span class="string">"getETag = "</span> + objectSummary.getETag());</span><br><span class="line">            System.out.println(<span class="string">"getLastModified = "</span> + objectSummary.getLastModified());</span><br><span class="line">            System.out.println(<span class="string">"getOwner = "</span> + objectSummary.getOwner());</span><br><span class="line">            System.out.println(<span class="string">"-------------------------------------------------"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li>删除文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteFiles</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除文件。key等同于ObjectName，表示删除OSS文件时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。</span></span><br><span class="line">        List&lt;String&gt; keys = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        keys.add(<span class="string">"test"</span>);</span><br><span class="line">        keys.add(<span class="string">"test1"</span>);</span><br><span class="line"></span><br><span class="line">        DeleteObjectsResult deleteObjectsResult = ossClient.deleteObjects(<span class="keyword">new</span> DeleteObjectsRequest(bucketName).withKeys(keys));</span><br><span class="line">        List&lt;String&gt; deletedObjects = deleteObjectsResult.getDeletedObjects();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li>上传文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">filesUpload</span><span class="params">(String filePath, String fileName)</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 带进度条的上传。</span></span><br><span class="line">            ossClient.putObject(<span class="keyword">new</span> PutObjectRequest(bucketName, fileName, <span class="keyword">new</span> File(<span class="string">"C:\\Users\\Elijah\\Desktop\\新建文本文档.txt"</span>)).</span><br><span class="line">                    &lt;PutObjectRequest&gt;withProgressListener(<span class="keyword">new</span> PutObjectProgressListener()));</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li>断点续传下载文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloadFiles</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 下载请求，10个任务并发下载，启动断点续传。</span></span><br><span class="line">        DownloadFileRequest downloadFileRequest = <span class="keyword">new</span> DownloadFileRequest(bucketName, objectName);</span><br><span class="line">        downloadFileRequest.setDownloadFile(<span class="string">"te.txt"</span>);</span><br><span class="line">        downloadFileRequest.setPartSize(<span class="number">1</span> * <span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line">        downloadFileRequest.setTaskNum(<span class="number">10</span>);</span><br><span class="line">        downloadFileRequest.setEnableCheckpoint(<span class="keyword">true</span>);</span><br><span class="line">        downloadFileRequest.setCheckpointFile(<span class="string">"download.ucp"</span>);</span><br><span class="line"></span><br><span class="line">        DownloadFileResult downloadRes = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 下载文件。</span></span><br><span class="line">            downloadRes = ossClient.downloadFile(downloadFileRequest);</span><br><span class="line">            <span class="comment">// 下载成功时，会返回文件元信息。</span></span><br><span class="line">            downloadRes.getObjectMetadata();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1.安装&lt;/p&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="阿里云" scheme="http://yoursite.com/categories/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
-    
-    
-      <category term="阿里云" scheme="http://yoursite.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot-设置定时任务</title>
-    <link href="http://yoursite.com/2020/04/03/SpringBoot-%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    <id>http://yoursite.com/2020/04/03/SpringBoot-%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</id>
-    <published>2020-04-03T13:41:38.000Z</published>
-    <updated>2020-04-04T04:21:12.351Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.EnableScheduling;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.Scheduled;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 开启定时任务的注解</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tesk</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Scheduled</span>(fixedRate = <span class="number">5000</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">job1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"定时任务1"</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Scheduled</span>(cron = <span class="string">"0/5 * * * * ?"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">job2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"定时任务2"</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Cron表达式参数分别表示：</span><br><span class="line"></span><br><span class="line">秒（0~59） 例如0&#x2F;5表示每5秒</span><br><span class="line">分（0~59）</span><br><span class="line">时（0~23）</span><br><span class="line">日（0~31）的某天，需计算</span><br><span class="line">月（0~11）</span><br><span class="line">周几（ 可填1-7 或 SUN&#x2F;MON&#x2F;TUE&#x2F;WED&#x2F;THU&#x2F;FRI&#x2F;SAT）</span><br><span class="line"></span><br><span class="line"># 例</span><br><span class="line">0 0 10,12,13 * * ? 每天上午10点，中午12点，下午1点</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=
-      
-    
-    </summary>
-    
-    
-      <category term="SpringBoot" scheme="http://yoursite.com/categories/SpringBoot/"/>
-    
-    
-      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot-配置redis（一）</title>
-    <link href="http://yoursite.com/2020/04/03/SpringBoot-%E9%85%8D%E7%BD%AEredis%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/04/03/SpringBoot-%E9%85%8D%E7%BD%AEredis%EF%BC%88%E4%B8%80%EF%BC%89/</id>
-    <published>2020-04-03T13:37:03.000Z</published>
-    <updated>2020-04-04T04:20:55.856Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="1-下载redis安装包，并安装"><a href="#1-下载redis安装包，并安装" class="headerlink" title="1. 下载redis安装包，并安装"></a>1. 下载<code>redis</code>安装包，并安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;microsoftarchive&#x2F;redis&#x2F;releases</span><br></pre></td></tr></table></figure><h5 id="2-下载redis-desktop可视化管理软件并进行链接测试"><a href="#2-下载redis-desktop可视化管理软件并进行链接测试" class="headerlink" title="2. 下载redis-desktop可视化管理软件并进行链接测试"></a>2. 下载<code>redis-desktop</code>可视化管理软件并进行链接测试</h5><p>![1.png][<a href="http://blog-elijah.test.upcdn.net/SpringBoot/redis/1.png]" target="_blank" rel="noopener">http://blog-elijah.test.upcdn.net/SpringBoot/redis/1.png]</a></p><h5 id="3-创建SpringBoot项目并添加依赖"><a href="#3-创建SpringBoot项目并添加依赖" class="headerlink" title="3. 创建SpringBoot项目并添加依赖"></a>3. 创建<code>SpringBoot</code>项目并添加依赖</h5><blockquote><p><code>SpringBoot</code>创建项目请参考<a href="https://blog.csdn.net/weixin_40330033/article/details/103827316" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40330033/article/details/103827316</a></p></blockquote><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><h5 id="4-在application-properties添加redis配置信息"><a href="#4-在application-properties添加redis配置信息" class="headerlink" title="4. 在application.properties添加redis配置信息"></a>4. 在<code>application.properties</code>添加<code>redis</code>配置信息</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis数据库索引（默认为0）</span></span><br><span class="line"><span class="meta">spring.redis.database</span>=<span class="string">0</span></span><br><span class="line"><span class="comment"># Redis服务器地址</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">127.0.0.1</span></span><br><span class="line"><span class="comment"># Redis服务器连接端口</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6379</span></span><br><span class="line"><span class="comment"># Redis服务器连接密码（默认为空）</span></span><br><span class="line"><span class="meta">spring.redis.password</span>=<span class="string"></span></span><br><span class="line"><span class="comment"># 连接池最大连接数（使用负值表示没有限制）</span></span><br><span class="line"><span class="meta">spring.redis.jedis.pool.max-active</span>=<span class="string">8</span></span><br><span class="line"><span class="comment"># 连接池最大阻塞等待时间（使用负值表示没有限制）</span></span><br><span class="line"><span class="meta">spring.redis.jedis.pool.max-wait</span>=<span class="string">-1</span></span><br><span class="line"><span class="comment"># 连接池中的最大空闲连接</span></span><br><span class="line"><span class="meta">spring.redis.jedis.pool.max-idle</span>=<span class="string">8</span></span><br><span class="line"><span class="comment"># 连接池中的最小空闲连接</span></span><br><span class="line"><span class="meta">spring.redis.jedis.pool.min-idle</span>=<span class="string">0</span></span><br><span class="line"><span class="comment"># 连接超时时间（毫秒）</span></span><br><span class="line"><span class="meta">spring.redis.timeout</span>=<span class="string">5000</span></span><br></pre></td></tr></table></figure><h5 id="5-redis使用方法"><a href="#5-redis使用方法" class="headerlink" title="5. redis使用方法"></a>5. <code>redis</code>使用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注入RedisTemplate</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 操作字符串</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">redisString</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    redisTemplate.opsForValue().set(<span class="string">"string"</span>, <span class="string">"string"</span>);</span><br><span class="line">    Object string = redisTemplate.opsForValue().get(<span class="string">"string"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置5秒内失效</span></span><br><span class="line">    redisTemplate.opsForValue().set(<span class="string">"string"</span>, <span class="string">"string"</span>, <span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        string = redisTemplate.opsForValue().get(<span class="string">"string"</span>);</span><br><span class="line">        System.out.println(<span class="string">"string = "</span> + string);</span><br><span class="line">        Thread.currentThread().sleep(<span class="number">3000</span>);</span><br><span class="line">        string = redisTemplate.opsForValue().get(<span class="string">"string"</span>);</span><br><span class="line">        System.out.println(<span class="string">"string = "</span> + string);</span><br><span class="line">        Thread.currentThread().sleep(<span class="number">3000</span>);</span><br><span class="line">        string = redisTemplate.opsForValue().get(<span class="string">"string"</span>);</span><br><span class="line">        System.out.println(<span class="string">"string = "</span> + string);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception error) &#123;</span><br><span class="line">        error.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 操作散列</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">redisHash</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; redisMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    redisMap.put(<span class="string">"1"</span>, <span class="string">"test1"</span>);</span><br><span class="line">    redisMap.put(<span class="string">"2"</span>, <span class="string">"test2"</span>);</span><br><span class="line">    redisTemplate.opsForHash().putAll(<span class="string">"redisHash"</span>, redisMap);</span><br><span class="line">    System.out.println(redisTemplate.opsForHash().entries(<span class="string">"redisHash"</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 删除缓存的散列</span></span><br><span class="line">    redisTemplate.opsForHash().delete(<span class="string">"redisHash"</span>, <span class="string">"1"</span>);</span><br><span class="line">    System.out.println(redisTemplate.opsForHash().entries(<span class="string">"redisHash"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 操作列表</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">redisList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;String&gt; stringArrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    stringArrayList.add(<span class="string">"test1"</span>);</span><br><span class="line">    stringArrayList.add(<span class="string">"test2"</span>);</span><br><span class="line">    stringArrayList.add(<span class="string">"test3"</span>);</span><br><span class="line">    redisTemplate.opsForList().leftPush(<span class="string">"redisList"</span>, stringArrayList);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出缓存的列表</span></span><br><span class="line">    System.out.println(redisTemplate.opsForList().leftPop(<span class="string">"redisList"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 操作集合</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">redisSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String[] strings = <span class="keyword">new</span> String[]&#123;<span class="string">"test1"</span>, <span class="string">"test2"</span>&#125;;</span><br><span class="line">    redisTemplate.opsForSet().add(<span class="string">"redisSet"</span>, strings);</span><br><span class="line">    <span class="comment">// 获取集合的第一个值</span></span><br><span class="line">    System.out.println(redisTemplate.opsForSet().pop(<span class="string">"redisSet"</span>));</span><br><span class="line">    <span class="comment">// 移除集合的值</span></span><br><span class="line">    redisTemplate.opsForSet().remove(<span class="string">"redisSet"</span>, strings);</span><br><span class="line">    System.out.println(redisTemplate.opsForSet().pop(<span class="string">"redisSet"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 操作类</span></span><br><span class="line"><span class="comment">// 创建用户类进行测试，该类必须值除序列化</span></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String userId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String userId, String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"userId='"</span> + userId + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", userName='"</span> + userName + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试方法</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">redisClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;User&gt; userArrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    User user1 = <span class="keyword">new</span> User(<span class="string">"1"</span>, <span class="string">"test1"</span>);</span><br><span class="line">    User user2 = <span class="keyword">new</span> User(<span class="string">"2"</span>, <span class="string">"test2"</span>);</span><br><span class="line">    User user3 = <span class="keyword">new</span> User(<span class="string">"3"</span>, <span class="string">"test3"</span>);</span><br><span class="line">    userArrayList.add(user1);</span><br><span class="line">    userArrayList.add(user2);</span><br><span class="line">    userArrayList.add(user3);</span><br><span class="line">    redisTemplate.opsForList().leftPush(<span class="string">"redisClass"</span>, userArrayList);</span><br><span class="line">    ArrayList&lt;User&gt; userArrayList1 = (ArrayList&lt;User&gt;) redisTemplate.opsForList().leftPop(<span class="string">"redisClass"</span>);</span><br><span class="line">    System.out.println(userArrayList1.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;1-下载redis安装包，并安装&quot;&gt;&lt;a href=&quot;#1-下载redis安装包，并安装&quot; class=&quot;headerlink&quot; title=&quot;1. 下载redis安装包，并安装&quot;&gt;&lt;/a&gt;1. 下载&lt;code&gt;redis&lt;/code&gt;安装包，并安装&lt;/h5&gt;&lt;f
-      
-    
-    </summary>
-    
-    
-      <category term="SpringBoot" scheme="http://yoursite.com/categories/SpringBoot/"/>
-    
-    
-      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Jetson nano-安装 mxnet</title>
-    <link href="http://yoursite.com/2020/04/03/Jetson-nano-%E5%AE%89%E8%A3%85-mxnet/"/>
-    <id>http://yoursite.com/2020/04/03/Jetson-nano-%E5%AE%89%E8%A3%85-mxnet/</id>
-    <published>2020-04-03T13:31:17.000Z</published>
-    <updated>2020-04-04T04:19:41.247Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="1-准备相应的依赖包"><a href="#1-准备相应的依赖包" class="headerlink" title="1.准备相应的依赖包"></a>1.准备相应的依赖包</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt -y install \</span><br><span class="line">                        build-essential \</span><br><span class="line">                        git \</span><br><span class="line">                        graphviz \</span><br><span class="line">                        libatlas-base-dev \</span><br><span class="line">                        libopencv-dev \</span><br><span class="line">                        python-pip</span><br><span class="line"></span><br><span class="line">sudo pip install --upgrade \</span><br><span class="line">                        pip \</span><br><span class="line">                        setuptools</span><br><span class="line"></span><br><span class="line">sudo pip install \</span><br><span class="line">                        graphviz&#x3D;&#x3D;0.8.4 \</span><br><span class="line">                        jupyter \</span><br><span class="line">                        numpy&#x3D;&#x3D;1.15.2</span><br></pre></td></tr></table></figure><h5 id="2-下载mxnet源码"><a href="#2-下载mxnet源码" class="headerlink" title="2.下载mxnet源码"></a>2.下载mxnet源码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --recursive https:&#x2F;&#x2F;github.com&#x2F;apache&#x2F;incubator-mxnet.git mxnet</span><br></pre></td></tr></table></figure><h5 id="3-在家目录下的-profile文件添加如下内容"><a href="#3-在家目录下的-profile文件添加如下内容" class="headerlink" title="3.在家目录下的.profile文件添加如下内容"></a>3.在家目录下的.profile文件添加如下内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;bin:$PATH</span><br><span class="line">export MXNET_HOME&#x3D;$HOME&#x2F;mxnet&#x2F;</span><br><span class="line">export PYTHONPATH&#x3D;$MXNET_HOME&#x2F;python:$PYTHONPATH</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash source .profile</span><br></pre></td></tr></table></figure><h5 id="4-配置CUDA"><a href="#4-配置CUDA" class="headerlink" title="4.配置CUDA"></a>4.配置CUDA</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nvcc --version  #检查cuda版本</span><br><span class="line"></span><br><span class="line">#  进行如下修改</span><br><span class="line">sudo rm &#x2F;usr&#x2F;local&#x2F;cuda</span><br><span class="line">sudo ln -s &#x2F;usr&#x2F;local&#x2F;cuda-10.0 &#x2F;usr&#x2F;local&#x2F;cuda</span><br></pre></td></tr></table></figure><h5 id="5-安装mxnet"><a href="#5-安装mxnet" class="headerlink" title="5.安装mxnet"></a>5.安装mxnet</h5><blockquote><p>下载地址：</p></blockquote><blockquote><p>1：<a href="https://s3.us-east-2.amazonaws.com/mxnet-public/install/jetson/1.4.0/mxnet-1.4.0-cp36-cp36m-linux_aarch64.whl" target="_blank" rel="noopener">https://s3.us-east-2.amazonaws.com/mxnet-public/install/jetson/1.4.0/mxnet-1.4.0-cp36-cp36m-linux_aarch64.whl</a>   (python3)</p></blockquote><blockquote><p>2：<a href="https://s3.us-east-2.amazonaws.com/mxnet-public/install/jetson/1.4.0/mxnet-1.4.0-cp27-cp27mu-linux_aarch64.whl" target="_blank" rel="noopener">https://s3.us-east-2.amazonaws.com/mxnet-public/install/jetson/1.4.0/mxnet-1.4.0-cp27-cp27mu-linux_aarch64.whl</a>  (python2)</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install mxnet-***.whl</span><br></pre></td></tr></table></figure><h5 id="6-下载libmxnet-so并放在-MXNET-HOME-lib文件夹下"><a href="#6-下载libmxnet-so并放在-MXNET-HOME-lib文件夹下" class="headerlink" title="6.下载libmxnet.so并放在$MXNET_HOME/lib文件夹下"></a>6.下载<em>libmxnet.so</em>并放在$MXNET_HOME/lib文件夹下</h5><blockquote><p>下载地址：<br><a href="https://s3.us-east-2.amazonaws.com/mxnet-public/install/jetson/1.4.1/libmxnet.so" target="_blank" rel="noopener">https://s3.us-east-2.amazonaws.com/mxnet-public/install/jetson/1.4.1/libmxnet.so</a></p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd $MXNET_HOME</span><br><span class="line">git checkout v1.4.x</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line">cd python</span><br><span class="line">sudo pip install -e .</span><br></pre></td></tr></table></figure><hr><blockquote><p>参考链接：<br><a href="https://mxnet.apache.org/get_started/jetson_setup" target="_blank" rel="noopener">https://mxnet.apache.org/get_started/jetson_setup</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;1-准备相应的依赖包&quot;&gt;&lt;a href=&quot;#1-准备相应的依赖包&quot; class=&quot;headerlink&quot; title=&quot;1.准备相应的依赖包&quot;&gt;&lt;/a&gt;1.准备相应的依赖包&lt;/h5&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
-      
-    
-    </summary>
-    
-    
-      <category term="Jetson nano" scheme="http://yoursite.com/categories/Jetson-nano/"/>
-    
-    
-      <category term="Jetson nano" scheme="http://yoursite.com/tags/Jetson-nano/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高德地图API常用方法</title>
-    <link href="http://yoursite.com/2020/04/03/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2020/04/03/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</id>
-    <published>2020-04-03T13:29:42.000Z</published>
-    <updated>2020-04-04T04:22:34.185Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>高德地图官网链接:</p><p><a href="https://lbs.amap.com/api/javascript-api/summary" target="_blank" rel="noopener">https://lbs.amap.com/api/javascript-api/summary</a></p></blockquote><hr><h4 id="1-申请应用"><a href="#1-申请应用" class="headerlink" title="1. 申请应用"></a>1. 申请应用</h4><p>![高德地图api常用方法.png][<a href="http://blog-elijah.test.upcdn.net/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEapi%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png]" target="_blank" rel="noopener">http://blog-elijah.test.upcdn.net/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEapi%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png]</a></p><h4 id="2-地图的初始化"><a href="#2-地图的初始化" class="headerlink" title="2. 地图的初始化"></a>2. 地图的初始化</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 引入资源文件</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">"container"</span>, &#123;</span><br><span class="line">    resizeEnable: <span class="literal">true</span>,</span><br><span class="line">    zoom: <span class="number">5</span>, <span class="comment">// 缩放倍数</span></span><br><span class="line">    center:  [<span class="number">116.395577</span>, <span class="number">39.892257</span>],<span class="comment">//地图显示时中心点</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h4 id="3-坐标转换"><a href="#3-坐标转换" class="headerlink" title="3. 坐标转换"></a>3. 坐标转换</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gps = [</span><br><span class="line">         [<span class="number">116.395577</span>, <span class="number">39.892257</span>],</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    AMap.convertFrom(gps, <span class="string">'gps'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">status, result</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (result.info === <span class="string">'ok'</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> lnglats = result.locations;<span class="comment">//转换后的坐标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure><h4 id="4-点标记"><a href="#4-点标记" class="headerlink" title="4. 点标记"></a>4. 点标记</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, marker; i &lt; lnglats.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> marker = <span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">        position: lnglats[i],</span><br><span class="line">        map: map</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 设置点的提示信息</span></span><br><span class="line">    marker.content = <span class="string">'&lt;div&gt;提示信息&lt;/div&gt;'</span>;</span><br><span class="line">    <span class="comment">// 鼠标滑过自动显示提示信息</span></span><br><span class="line">    marker.on(<span class="string">'mouseover'</span>, infoOpen);</span><br><span class="line">    marker.on(<span class="string">'mouseout'</span>, infoClose);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="5-设置点的图标，大小"><a href="#5-设置点的图标，大小" class="headerlink" title="5. 设置点的图标，大小"></a>5. 设置点的图标，大小</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> marker = <span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">    position: [<span class="number">116.395577</span>, <span class="number">39.892257</span>],</span><br><span class="line">    map: map,</span><br><span class="line">    offset: <span class="keyword">new</span> AMap.Pixel(<span class="number">-13</span>, <span class="number">-30</span>),</span><br><span class="line">    icon: <span class="keyword">new</span> AMap.Icon(&#123;</span><br><span class="line">        size: <span class="keyword">new</span> AMap.Size(<span class="number">19</span>, <span class="number">33</span>), <span class="comment">// 图标尺寸</span></span><br><span class="line">        image: <span class="string">'//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png'</span>,</span><br><span class="line">        imageSize: <span class="keyword">new</span> AMap.Size(<span class="number">19</span>, <span class="number">33</span>)</span><br><span class="line">    &#125;),</span><br><span class="line">&#125;);</span><br><span class="line">marker.setMap(map);</span><br></pre></td></tr></table></figure><h4 id="5-添加控件"><a href="#5-添加控件" class="headerlink" title="5. 添加控件"></a>5. 添加控件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AMap.plugin([<span class="string">'AMap.ToolBar'</span>,<span class="string">'AMap.Scale'</span>,<span class="string">'AMap.OverView'</span>, <span class="string">"AMap.ControlBar"</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 工具条</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.ToolBar());</span><br><span class="line">        <span class="comment">// 比例尺</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.Scale());</span><br><span class="line">        <span class="comment">// 鹰眼</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.OverView(&#123;<span class="attr">isOpen</span>:<span class="literal">true</span>&#125;));</span><br><span class="line">        <span class="comment">// 指南针</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> AMap.ControlBar());</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure><h4 id="6-矢量图形"><a href="#6-矢量图形" class="headerlink" title="6. 矢量图形"></a>6. 矢量图形</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">"container"</span>, &#123;</span><br><span class="line">    center: [<span class="number">116.395577</span>, <span class="number">39.892257</span>],</span><br><span class="line">    zoom: <span class="number">14</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path = [</span><br><span class="line">    [<span class="number">116.362209</span>, <span class="number">39.887487</span>],</span><br><span class="line">    [<span class="number">116.422897</span>, <span class="number">39.878002</span>],</span><br><span class="line">    [<span class="number">116.372105</span>, <span class="number">39.90651</span>],</span><br><span class="line">    [<span class="number">116.428945</span>, <span class="number">39.89663</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> polyline = <span class="keyword">new</span> AMap.Polyline(&#123;</span><br><span class="line">    path: path,</span><br><span class="line">    isOutline: <span class="literal">true</span>,</span><br><span class="line">    outlineColor: <span class="string">'#ffeeff'</span>,</span><br><span class="line">    borderWeight: <span class="number">3</span>,</span><br><span class="line">    strokeColor: <span class="string">"#3366FF"</span>, </span><br><span class="line">    strokeOpacity: <span class="number">1</span>,</span><br><span class="line">    strokeWeight: <span class="number">6</span>,</span><br><span class="line">    <span class="comment">// 折线样式还支持 'dashed'</span></span><br><span class="line">    strokeStyle: <span class="string">"solid"</span>,</span><br><span class="line">    <span class="comment">// strokeStyle是dashed时有效</span></span><br><span class="line">    strokeDasharray: [<span class="number">10</span>, <span class="number">5</span>],</span><br><span class="line">    lineJoin: <span class="string">'round'</span>,</span><br><span class="line">    lineCap: <span class="string">'round'</span>,</span><br><span class="line">    zIndex: <span class="number">50</span>,</span><br><span class="line">&#125;)</span><br><span class="line"> polyline.setMap(map)</span><br><span class="line"><span class="comment">// 缩放地图到合适的视野级别</span></span><br><span class="line">map.setFitView([ polyline ])</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;高德地图官网链接:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://lbs.amap.com/api/javascript-api/summary&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://lbs.amap.c
-      
-    
-    </summary>
-    
-    
-      <category term="高德地图" scheme="http://yoursite.com/categories/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE/"/>
-    
-    
-      <category term="高德地图" scheme="http://yoursite.com/tags/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Jetson nano-换源</title>
-    <link href="http://yoursite.com/2020/04/03/Jetson-nano-%E6%8D%A2%E6%BA%90/"/>
-    <id>http://yoursite.com/2020/04/03/Jetson-nano-%E6%8D%A2%E6%BA%90/</id>
-    <published>2020-04-03T13:24:41.000Z</published>
-    <updated>2020-04-04T04:19:54.484Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-security main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-updates main multiverse restricted universe</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-backports main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-security main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-updates main multiverse restricted universe</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu-ports&#x2F; bionic-backports main multiverse restricted universe</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-    
-      <category term="Jetson nano" scheme="http://yoursite.com/categories/Jetson-nano/"/>
-    
-    
-      <category term="Jetson nano" scheme="http://yoursite.com/tags/Jetson-nano/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建博客-hexo（github）</title>
-    <link href="http://yoursite.com/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-hexo%EF%BC%88github%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-hexo%EF%BC%88github%EF%BC%89/</id>
-    <published>2020-04-03T13:22:20.000Z</published>
-    <updated>2020-04-04T04:21:38.789Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="1-安装node-js"><a href="#1-安装node-js" class="headerlink" title="1.安装node.js"></a>1.安装<code>node.js</code></h5><blockquote><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p></blockquote><h5 id="2-安装cnpm"><a href="#2-安装cnpm" class="headerlink" title="2.安装cnpm"></a>2.安装<code>cnpm</code></h5><blockquote><p>cmd : <code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p></blockquote><h5 id="3-安装hexo"><a href="#3-安装hexo" class="headerlink" title="3.安装hexo"></a>3.安装<code>hexo</code></h5><blockquote><p>cmd: <code>cnpm install -g hexo-cli</code></p></blockquote><h5 id="4-在电脑任一路径下创建一个空文件，运行hexo-init初始化博客"><a href="#4-在电脑任一路径下创建一个空文件，运行hexo-init初始化博客" class="headerlink" title="4.在电脑任一路径下创建一个空文件，运行hexo init初始化博客"></a>4.在电脑任一路径下创建一个空文件，运行<code>hexo init</code>初始化博客</h5><h5 id="5-常用命令"><a href="#5-常用命令" class="headerlink" title="5.常用命令"></a>5.常用命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">启动：hexo s</span><br><span class="line">创建文章：hexo n &quot;名称&quot;</span><br><span class="line">清除资源：hexo clean</span><br></pre></td></tr></table></figure><h5 id="6-部署到github"><a href="#6-部署到github" class="headerlink" title="6.部署到github"></a>6.部署到<code>github</code></h5><ol><li>创建新仓库，仓库名称必须是<code>用户名.github.io</code></li><li>安装<code>hexo</code>部署插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure></li><li>修改配置文件<code>_config.yml</code><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">自己GitHub仓库的地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li><li>推送到<code>github</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure></li><li>访问<code>https://自己的用户名.github.io</code>即可进入首页</li></ol><h5 id="7-修改主题"><a href="#7-修改主题" class="headerlink" title="7.修改主题"></a>7.修改主题</h5><blockquote><p>参考主题样式：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a></p></blockquote><ol><li>在<code>theme</code>目录下<code>git clone</code>自己喜欢的主题</li><li>修改<code>_config.yml</code>，找到<code>theme</code>，修改名称为刚刚下载的主题名称</li><li>在控制台清理<code>hexo</code>缓存<blockquote><p>hexo clean</p></blockquote></li><li>重新生成<code>hexo</code>样式<blockquote><p>hexo g</p></blockquote></li><li>部署到<code>github</code><blockquote><p>hexo d</p></blockquote></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;1-安装node-js&quot;&gt;&lt;a href=&quot;#1-安装node-js&quot; class=&quot;headerlink&quot; title=&quot;1.安装node.js&quot;&gt;&lt;/a&gt;1.安装&lt;code&gt;node.js&lt;/code&gt;&lt;/h5&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=
-      
-    
-    </summary>
-    
-    
-      <category term="搭建博客" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="搭建博客" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建博客-halo（ubuntu）</title>
-    <link href="http://yoursite.com/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-halo%EF%BC%88ubuntu%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-halo%EF%BC%88ubuntu%EF%BC%89/</id>
-    <published>2020-04-03T13:17:29.000Z</published>
-    <updated>2020-04-04T04:21:29.265Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>官网地址：<a href="https://halo.run/" target="_blank" rel="noopener">https://halo.run/</a></p></blockquote><h5 id="1-下载-Halo-运行包"><a href="#1-下载-Halo-运行包" class="headerlink" title="1. 下载 Halo 运行包"></a>1. 下载 Halo 运行包</h5><blockquote><p><a href="https://github.com/halo-dev/halo/releases" target="_blank" rel="noopener">https://github.com/halo-dev/halo/releases</a></p></blockquote><h5 id="2-运行"><a href="#2-运行" class="headerlink" title="2. 运行"></a>2. 运行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 打开tmux</span><br><span class="line">tmux</span><br><span class="line"># 运行</span><br><span class="line">java -jar halo-1.2.0.jar</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;官网地址：&lt;a href=&quot;https://halo.run/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://halo.run/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h5 id=&quot;1-下载-Halo-运行
-      
-    
-    </summary>
-    
-    
-      <category term="搭建博客" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="搭建博客" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建博客-typecho（ubuntu）</title>
-    <link href="http://yoursite.com/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-typecho%EF%BC%88ubuntu%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/04/03/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-typecho%EF%BC%88ubuntu%EF%BC%89/</id>
-    <published>2020-04-03T13:04:44.000Z</published>
-    <updated>2020-04-04T04:21:47.822Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="1-安装宝塔Linux面板（最好在纯净的linux系统中）"><a href="#1-安装宝塔Linux面板（最好在纯净的linux系统中）" class="headerlink" title="1. 安装宝塔Linux面板（最好在纯净的linux系统中）"></a>1. 安装宝塔Linux面板（最好在纯净的linux系统中）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.sh http:&#x2F;&#x2F;download.bt.cn&#x2F;install&#x2F;install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh</span><br></pre></td></tr></table></figure><blockquote><p>记录下自己的Bt-Panel，username和password</p></blockquote><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_1.png" alt="avatar"></p><h5 id="2-登录Bt-Panel的网址-输入刚才记录的账号和密码，点击进入面板"><a href="#2-登录Bt-Panel的网址-输入刚才记录的账号和密码，点击进入面板" class="headerlink" title="2. 登录Bt-Panel的网址,输入刚才记录的账号和密码，点击进入面板"></a>2. 登录<code>Bt-Panel</code>的网址,输入刚才记录的账号和密码，点击进入面板</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_2.png" alt="avatar"></p><h5 id="3-将php版本改为7-2，选择LNMP安装，等待安装即可"><a href="#3-将php版本改为7-2，选择LNMP安装，等待安装即可" class="headerlink" title="3. 将php版本改为7.2，选择LNMP安装，等待安装即可"></a>3. 将php版本改为7.2，选择LNMP安装，等待安装即可</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_3.png" alt="avatar"><br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_4.png" alt="avatar"></p><h5 id="4-在应用商店中安装宝塔一键部署源码-1-1工具，打开该工具的设置"><a href="#4-在应用商店中安装宝塔一键部署源码-1-1工具，打开该工具的设置" class="headerlink" title="4. 在应用商店中安装宝塔一键部署源码 1.1工具，打开该工具的设置"></a>4. 在应用商店中安装<code>宝塔一键部署源码 1.1</code>工具，打开该工具的设置</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_4.png" alt="avatar"></p><h5 id="5-设置网站伪静态"><a href="#5-设置网站伪静态" class="headerlink" title="5. 设置网站伪静态"></a>5. 设置网站伪静态</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_6.png" alt="avatar"></p><h5 id="6-访问站点地址进行初始化"><a href="#6-访问站点地址进行初始化" class="headerlink" title="6. 访问站点地址进行初始化"></a>6. 访问站点地址进行初始化</h5><blockquote><p>数据库信息填写之前弹出的数据库信息，忘记的可以在左侧数据库栏中查看。</p></blockquote><blockquote><p>管理员账号的用户名和密码自己进行设置。</p></blockquote><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_7.png" alt="avatar"><br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_8.png" alt="avatar"></p><h5 id="7-再次访问站点即可看到博客已完成部署"><a href="#7-再次访问站点即可看到博客已完成部署" class="headerlink" title="7. 再次访问站点即可看到博客已完成部署"></a>7. 再次访问站点即可看到博客已完成部署</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_9.png" alt="avatar"></p><h5 id="8-更换模板"><a href="#8-更换模板" class="headerlink" title="8. 更换模板"></a>8. 更换模板</h5><blockquote><p><a href="https://typecho.me/" target="_blank" rel="noopener">https://typecho.me/</a></p></blockquote><p>下载选好的模板到本地，<br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_10.png" alt="avatar"></p><h5 id="9-进入域名或者ip地址-admin页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。"><a href="#9-进入域名或者ip地址-admin页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。" class="headerlink" title="9. 进入域名或者ip地址/admin页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。"></a>9. 进入<code>域名或者ip地址/admin</code>页面，输入之前设置的管理员账号和密码，点击左上角的控制台中的外观按钮，即可看到自己添加的前端模板。</h5><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_11.png" alt="avatar"><br><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_12.png" alt="avatar"></p><hr><blockquote><p>资源消耗：</p><p>安装前：</p></blockquote><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_%E5%AE%89%E8%A3%85%E5%89%8D%E8%B5%84%E6%BA%90.png" alt="avatar"></p><blockquote><p>安装后：</p></blockquote><p><img src="http://blog-elijah.test.upcdn.net/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/typecho/blog_typecho_%E5%AE%89%E8%A3%85%E5%90%8E%E8%B5%84%E6%BA%90.png" alt="avatar"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;1-安装宝塔Linux面板（最好在纯净的linux系统中）&quot;&gt;&lt;a href=&quot;#1-安装宝塔Linux面板（最好在纯净的linux系统中）&quot; class=&quot;headerlink&quot; title=&quot;1. 安装宝塔Linux面板（最好在纯净的linux系统中）&quot;&gt;&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="搭建博客" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="搭建博客" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
