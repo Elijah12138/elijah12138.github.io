@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+<script data-ad-client="ca-pub-8895838728268090" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0.编程环境pytorch： 1.1.0 cudatoolkit： 9.0   安装语句：conda install pytorch torchvision cudatoolkit&#x3D;9.0   Tensor1.创建Tensor1import torch   1234x1 &#x3D; torch.Tensor([3, 4])x2 &#x3D; torch.FloatTensor([4, 4])x3 &#x3D; torch.r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pytorch-基础">
+<meta property="og:url" content="http://yoursite.com/2020/04/09/pytorch-%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Elijah的个人博客">
+<meta property="og:description" content="0.编程环境pytorch： 1.1.0 cudatoolkit： 9.0   安装语句：conda install pytorch torchvision cudatoolkit&#x3D;9.0   Tensor1.创建Tensor1import torch   1234x1 &#x3D; torch.Tensor([3, 4])x2 &#x3D; torch.FloatTensor([4, 4])x3 &#x3D; torch.r">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-09T04:48:07.000Z">
+<meta property="article:modified_time" content="2020-04-09T04:50:06.343Z">
+<meta property="article:author" content="Elijah">
+<meta property="article:tag" content="pytorch">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/09/pytorch-%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>pytorch-基础 | Elijah的个人博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?904d266230c8ce6c22744bcfbddc56ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Elijah的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Elijah的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="history fa-fw"></i>归档<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="list fa-fw"></i>分类<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/09/pytorch-%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Elijah">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Elijah的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pytorch-基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-09 12:48:07 / Modified: 12:50:06" itemprop="dateCreated datePublished" datetime="2020-04-09T12:48:07+08:00">2020-04-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="0-编程环境"><a href="#0-编程环境" class="headerlink" title="0.编程环境"></a>0.编程环境</h3><p>pytorch： 1.1.0</p>
+<p>cudatoolkit： 9.0 </p>
+<blockquote>
+<p>安装语句：conda install pytorch torchvision cudatoolkit=9.0</p>
+</blockquote>
+<hr>
+<h3 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h3><h4 id="1-创建Tensor"><a href="#1-创建Tensor" class="headerlink" title="1.创建Tensor"></a>1.创建Tensor</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x1 = torch.Tensor([<span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">x2 = torch.FloatTensor([<span class="number">4</span>, <span class="number">4</span>])</span><br><span class="line">x3 = torch.randn(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">x1, x2, x3</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([3., 4.]),
+ tensor([4., 4.]),
+ tensor([[ 1.6399,  1.0582, -0.5927, -1.2985],
+         [ 0.9312,  0.2299, -0.5940,  1.1357],
+         [-2.1210, -0.2413,  0.1483,  0.0567]]))</code></pre><h4 id="2-tensor与numpy相互转化"><a href="#2-tensor与numpy相互转化" class="headerlink" title="2.tensor与numpy相互转化"></a>2.tensor与numpy相互转化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">numpy_tensor = np.random.randn(<span class="number">10</span>, <span class="number">20</span>)</span><br><span class="line"><span class="comment"># 使用from_numpy将numpy转换为tensor</span></span><br><span class="line">numpy_to_pytorch_tensor = torch.from_numpy(numpy_tensor)</span><br><span class="line"><span class="comment"># 使用numpy将tensor转换为numpy</span></span><br><span class="line">pytorch_to_numpy_tensor = numpy_to_pytorch_tensor.numpy()</span><br><span class="line">numpy_to_pytorch_tensor, pytorch_to_numpy_tensor</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([[-9.2412e-01, -1.6667e+00,  1.3394e+00,  1.9778e-01, -2.9694e-01,
+           8.4751e-01,  6.4140e-01, -4.3090e-01,  1.7720e+00, -1.8852e+00,
+           8.3369e-01,  8.8742e-01,  1.7715e+00, -6.0054e-03,  1.5619e+00,
+          -2.0915e+00, -8.2746e-01,  1.1123e-01, -1.2618e-01,  2.4763e-01],
+         [-4.5782e-01, -1.8254e+00,  7.1412e-01,  1.5824e+00, -5.0713e-01,
+           3.8994e-01, -2.0305e-01, -1.8963e-02, -1.4382e+00, -9.3411e-01,
+          -8.5849e-01,  9.3715e-01, -5.1027e-01,  1.1572e+00, -2.6459e-01,
+          -1.0785e+00, -6.6564e-01,  2.1692e-01, -4.6277e-01,  8.5931e-01],
+         [ 6.0922e-01,  9.4794e-01,  2.1098e+00,  6.9449e-01, -2.3971e-01,
+           2.5584e+00, -1.7604e+00, -1.3253e+00,  4.8066e-01, -8.6905e-01,
+          -8.9468e-02, -7.1352e-01,  1.8552e+00,  1.0018e+00,  7.4216e-01,
+          -6.7655e-01, -8.6220e-01,  1.7163e-01, -1.4165e+00, -1.6646e-01],
+         [ 9.7260e-01,  1.2978e-01,  9.6561e-01,  1.5414e-02, -8.7662e-01,
+           4.3728e-01,  2.6895e+00, -5.2750e-01, -1.4546e+00,  5.4438e-01,
+          -6.7887e-02,  2.7071e-01,  5.3887e-01,  2.2135e+00, -9.5517e-03,
+           5.4388e-01,  7.4464e-01,  9.7403e-01,  2.5108e-01,  7.4396e-01],
+         [ 3.5210e-02,  1.0553e+00,  1.3343e+00,  2.1891e-01,  5.9012e-01,
+          -1.9677e+00, -1.3188e+00, -3.4032e-01, -9.5841e-01, -1.3746e+00,
+          -6.4992e-01, -1.3080e+00, -5.0882e-01, -7.9672e-01,  2.2461e+00,
+           1.2005e-03,  8.2737e-01,  2.0653e+00, -1.0030e+00,  2.9210e-01],
+         [ 1.3772e+00, -3.3829e-01,  4.4449e-01,  1.8879e-01, -2.9321e-01,
+           1.4310e+00, -2.2552e+00,  4.7913e-01,  7.7705e-01, -4.4400e-01,
+          -1.1134e-01,  2.6779e-01, -1.6378e-01, -2.1376e-01,  4.4889e-02,
+           4.5546e-01,  1.3229e+00, -1.3188e+00, -1.7017e-01, -1.0302e-02],
+         [ 4.6297e-01,  2.1189e+00, -2.3435e-02, -7.8211e-02,  1.3628e+00,
+          -2.0995e-02, -1.6543e+00, -1.3221e+00,  1.2387e+00,  5.3599e-01,
+           8.7468e-01,  3.4375e-01, -1.8251e+00, -1.2610e+00,  3.2677e-01,
+          -3.4598e-01,  5.2431e-01, -2.1375e+00,  1.5971e-01,  5.9295e-01],
+         [-7.2086e-01,  5.0388e-02,  3.7147e-01,  2.1441e-01,  2.7752e-01,
+          -4.3412e-02, -7.6528e-01,  3.0595e-01, -8.1759e-02, -9.6263e-01,
+           2.2660e+00, -1.6222e+00, -7.7254e-01, -5.8874e-01, -1.6206e-01,
+           9.9959e-02, -4.2326e-01, -1.3035e+00,  4.2965e-01, -1.8652e+00],
+         [ 8.3210e-02, -6.9117e-01, -6.9932e-02,  1.0123e+00,  5.6874e-01,
+           1.4312e+00,  9.0971e-01, -4.0987e-01,  1.5364e+00, -3.0060e+00,
+          -1.1676e+00,  7.3152e-01, -5.3547e-01,  6.2758e-01,  7.2038e-01,
+           3.8058e-01, -1.5071e-01, -4.5310e-01,  1.2311e+00,  1.2751e+00],
+         [ 1.1279e+00, -6.7724e-01,  1.0866e+00,  1.8366e-01,  1.3432e+00,
+          -6.0055e-01, -3.6140e-01, -3.7749e-01, -1.7447e+00,  3.3534e-02,
+           1.1106e+00, -3.1341e-01, -1.0550e+00, -4.3612e-01, -6.1891e-01,
+          -8.1331e-02, -1.4274e+00, -1.7746e+00, -3.3573e-02,  5.2553e-01]],
+        dtype=torch.float64),
+ array([[-9.24119145e-01, -1.66668233e+00,  1.33944007e+00,
+          1.97782246e-01, -2.96938071e-01,  8.47509843e-01,
+          6.41399494e-01, -4.30896031e-01,  1.77200994e+00,
+         -1.88519249e+00,  8.33689867e-01,  8.87420023e-01,
+          1.77151574e+00, -6.00544578e-03,  1.56193118e+00,
+         -2.09151140e+00, -8.27464434e-01,  1.11227450e-01,
+         -1.26182897e-01,  2.47629118e-01],
+        [-4.57822074e-01, -1.82539032e+00,  7.14120077e-01,
+          1.58241601e+00, -5.07126879e-01,  3.89943202e-01,
+         -2.03049676e-01, -1.89628927e-02, -1.43817166e+00,
+         -9.34111184e-01, -8.58486332e-01,  9.37146399e-01,
+         -5.10274948e-01,  1.15717139e+00, -2.64586075e-01,
+         -1.07847024e+00, -6.65640023e-01,  2.16919690e-01,
+         -4.62766316e-01,  8.59308438e-01],
+        [ 6.09215253e-01,  9.47941689e-01,  2.10980171e+00,
+          6.94492385e-01, -2.39707574e-01,  2.55837620e+00,
+         -1.76041514e+00, -1.32534190e+00,  4.80659018e-01,
+         -8.69046294e-01, -8.94677677e-02, -7.13516299e-01,
+          1.85517249e+00,  1.00184289e+00,  7.42155646e-01,
+         -6.76548765e-01, -8.62201892e-01,  1.71625997e-01,
+         -1.41649249e+00, -1.66462727e-01],
+        [ 9.72600912e-01,  1.29779120e-01,  9.65611783e-01,
+          1.54140364e-02, -8.76617897e-01,  4.37278595e-01,
+          2.68949028e+00, -5.27498252e-01, -1.45456733e+00,
+          5.44375101e-01, -6.78865782e-02,  2.70708737e-01,
+          5.38867469e-01,  2.21350448e+00, -9.55167162e-03,
+          5.43882047e-01,  7.44639047e-01,  9.74030525e-01,
+          2.51078607e-01,  7.43958315e-01],
+        [ 3.52098003e-02,  1.05529239e+00,  1.33433528e+00,
+          2.18913807e-01,  5.90118577e-01, -1.96767854e+00,
+         -1.31877624e+00, -3.40320056e-01, -9.58410437e-01,
+         -1.37462721e+00, -6.49921990e-01, -1.30802679e+00,
+         -5.08818813e-01, -7.96717636e-01,  2.24611300e+00,
+          1.20051071e-03,  8.27373511e-01,  2.06528393e+00,
+         -1.00295409e+00,  2.92103662e-01],
+        [ 1.37715600e+00, -3.38286107e-01,  4.44489389e-01,
+          1.88794923e-01, -2.93207433e-01,  1.43103010e+00,
+         -2.25524730e+00,  4.79133747e-01,  7.77053572e-01,
+         -4.44000931e-01, -1.11336018e-01,  2.67787996e-01,
+         -1.63778080e-01, -2.13760542e-01,  4.48888788e-02,
+          4.55459200e-01,  1.32286400e+00, -1.31876985e+00,
+         -1.70165266e-01, -1.03016587e-02],
+        [ 4.62968409e-01,  2.11890423e+00, -2.34352451e-02,
+         -7.82108185e-02,  1.36283128e+00, -2.09948748e-02,
+         -1.65427713e+00, -1.32207609e+00,  1.23870963e+00,
+          5.35989217e-01,  8.74677082e-01,  3.43749588e-01,
+         -1.82509099e+00, -1.26103749e+00,  3.26774242e-01,
+         -3.45975563e-01,  5.24313247e-01, -2.13753636e+00,
+          1.59705363e-01,  5.92949967e-01],
+        [-7.20860330e-01,  5.03881228e-02,  3.71470168e-01,
+          2.14412630e-01,  2.77515809e-01, -4.34119431e-02,
+         -7.65284580e-01,  3.05952215e-01, -8.17594492e-02,
+         -9.62628960e-01,  2.26603806e+00, -1.62217936e+00,
+         -7.72536688e-01, -5.88738891e-01, -1.62059364e-01,
+          9.99593039e-02, -4.23262340e-01, -1.30350878e+00,
+          4.29654099e-01, -1.86524004e+00],
+        [ 8.32098555e-02, -6.91165828e-01, -6.99324134e-02,
+          1.01232928e+00,  5.68738691e-01,  1.43121745e+00,
+          9.09711845e-01, -4.09872272e-01,  1.53643757e+00,
+         -3.00604923e+00, -1.16761633e+00,  7.31519662e-01,
+         -5.35470487e-01,  6.27581302e-01,  7.20379815e-01,
+          3.80580747e-01, -1.50710432e-01, -4.53103275e-01,
+          1.23112188e+00,  1.27514046e+00],
+        [ 1.12794012e+00, -6.77241020e-01,  1.08656155e+00,
+          1.83658105e-01,  1.34320302e+00, -6.00549581e-01,
+         -3.61398626e-01, -3.77485789e-01, -1.74472608e+00,
+          3.35344326e-02,  1.11061440e+00, -3.13408496e-01,
+         -1.05501751e+00, -4.36120518e-01, -6.18910729e-01,
+         -8.13309625e-02, -1.42736173e+00, -1.77460866e+00,
+         -3.35733357e-02,  5.25526333e-01]]))</code></pre><h4 id="使用gpu进行运算"><a href="#使用gpu进行运算" class="headerlink" title="使用gpu进行运算"></a>使用gpu进行运算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>tensor([[-0.6773,  0.4021,  0.1151, -0.5207],
+        [-0.3090, -0.7996,  0.4855, -0.7294],
+        [ 0.2124, -0.8550, -0.3459, -0.1413]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_gpu = x.cuda(<span class="number">0</span>)</span><br><span class="line">x_gpu</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>tensor([[-0.6773,  0.4021,  0.1151, -0.5207],
+        [-0.3090, -0.7996,  0.4855, -0.7294],
+        [ 0.2124, -0.8550, -0.3459, -0.1413]], device=&apos;cuda:0&apos;)</code></pre><h4 id="常用矩阵运算"><a href="#常用矩阵运算" class="headerlink" title="常用矩阵运算"></a>常用矩阵运算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x1 = torch.ones(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="comment"># 矩阵和标量运算</span></span><br><span class="line">y1 = x1 + <span class="number">3</span></span><br><span class="line">x1, y1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([[1., 1., 1., 1.],
+         [1., 1., 1., 1.],
+         [1., 1., 1., 1.]]),
+ tensor([[4., 4., 4., 4.],
+         [4., 4., 4., 4.],
+         [4., 4., 4., 4.]]))</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 矩阵和矩阵运算</span></span><br><span class="line">x2 = torch.randn(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">y2 = torch.add(x1, x2)</span><br><span class="line">x1, x2, y2</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([[1., 1., 1., 1.],
+         [1., 1., 1., 1.],
+         [1., 1., 1., 1.]]),
+ tensor([[ 0.9059, -1.7149,  2.1832,  0.3042],
+         [ 1.6291,  0.7876,  0.4201,  0.7667],
+         [ 0.0886, -0.0454,  1.3366,  1.2681]]),
+ tensor([[ 1.9059, -0.7149,  3.1832,  1.3042],
+         [ 2.6291,  1.7876,  1.4201,  1.7667],
+         [ 1.0886,  0.9546,  2.3366,  2.2681]]))</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看tensor的形状</span></span><br><span class="line">y2.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>torch.Size([3, 4])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 矩阵的重新排列</span></span><br><span class="line">y2.view(<span class="number">4</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>tensor([[ 1.9059, -0.7149,  3.1832],
+        [ 1.3042,  2.6291,  1.7876],
+        [ 1.4201,  1.7667,  1.0886],
+        [ 0.9546,  2.3366,  2.2681]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># unsqueeze表示升维，squeeze表示降维</span></span><br><span class="line">y2 = y2.unsqueeze(<span class="number">1</span>)</span><br><span class="line">y2, y2.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([[[ 1.9059, -0.7149,  3.1832,  1.3042]],
+
+         [[ 2.6291,  1.7876,  1.4201,  1.7667]],
+
+         [[ 1.0886,  0.9546,  2.3366,  2.2681]]]),
+ torch.Size([3, 1, 4]))</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y2 = y2.squeeze(<span class="number">1</span>)</span><br><span class="line">y2, y2.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([[ 1.9059, -0.7149,  3.1832,  1.3042],
+         [ 2.6291,  1.7876,  1.4201,  1.7667],
+         [ 1.0886,  0.9546,  2.3366,  2.2681]]),
+ torch.Size([3, 4]))</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取最大值(或最小值)以及下标</span></span><br><span class="line">max_index, max_value = y2.max(dim=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 或max_index, max_value = torch.max(y2, dim=1)</span></span><br><span class="line">max_index, max_value</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([3.1832, 2.6291, 2.3366]), tensor([2, 0, 2]))</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对每列进行求和</span></span><br><span class="line">sum = y2.sum(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 或sum = torch.sum(y2, dim=1)</span></span><br><span class="line">sum</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>tensor([5.6784, 7.6035, 6.6479])</code></pre><h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3><blockquote>
+<p>存在三个属性：</p>
+<p>1.data表示存放的数据tensor</p>
+<p>2.grad表示梯度</p>
+<p>3.grad_fn表示如何得到Variable</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = Variable(torch.randn(<span class="number">2</span>, <span class="number">3</span>), requires_grad = <span class="literal">True</span>)</span><br><span class="line">y = Variable(torch.randn(<span class="number">2</span>, <span class="number">3</span>), requires_grad = <span class="literal">True</span>)</span><br><span class="line">z = torch.sum(x + y)</span><br><span class="line">z.data</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>tensor(-3.7597)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z.backward()</span><br><span class="line">x.grad, y.grad, z.data</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([[1., 1., 1.],
+         [1., 1., 1.]]),
+ tensor([[1., 1., 1.],
+         [1., 1., 1.]]),
+ tensor(-3.7597))</code></pre><h3 id="AutoGrad"><a href="#AutoGrad" class="headerlink" title="AutoGrad"></a>AutoGrad</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x3 = Variable(torch.FloatTensor([<span class="number">2</span>]), requires_grad = <span class="literal">True</span>)</span><br><span class="line"><span class="comment"># x3 = 2，导数为4</span></span><br><span class="line">y = x3 ** <span class="number">2</span></span><br><span class="line">x3, y</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(tensor([2.], requires_grad=True), tensor([4.], grad_fn=&lt;PowBackward0&gt;))</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y.backward()</span><br><span class="line">x3.grad</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>tensor([4.])</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/06/python-socket%E9%80%9A%E4%BF%A1%EF%BC%88udp%EF%BC%89/" rel="prev" title="python-socket通信（udp）">
+      <i class="fa fa-chevron-left"></i> python-socket通信（udp）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/09/pytorch-%E5%8D%95%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="next" title="pytorch-单层神经网络">
+      pytorch-单层神经网络 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-编程环境"><span class="nav-number">1.</span> <span class="nav-text">0.编程环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor"><span class="nav-number">2.</span> <span class="nav-text">Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建Tensor"><span class="nav-number">2.1.</span> <span class="nav-text">1.创建Tensor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-tensor与numpy相互转化"><span class="nav-number">2.2.</span> <span class="nav-text">2.tensor与numpy相互转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用gpu进行运算"><span class="nav-number">2.3.</span> <span class="nav-text">使用gpu进行运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用矩阵运算"><span class="nav-number">2.4.</span> <span class="nav-text">常用矩阵运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variable"><span class="nav-number">3.</span> <span class="nav-text">Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AutoGrad"><span class="nav-number">4.</span> <span class="nav-text">AutoGrad</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Elijah"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Elijah</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.elijah.group/" title="blog → http:&#x2F;&#x2F;www.elijah.group&#x2F;" rel="noopener" target="_blank"><i class="fas fa-blog fa-fw"></i>blog</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.elijah.group/" title="csdn → http:&#x2F;&#x2F;www.elijah.group&#x2F;" rel="noopener" target="_blank"><i class="fab fa-blogger fa-fw"></i>csdn</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.elijah.group/" title="http:&#x2F;&#x2F;www.elijah.group&#x2F;" rel="noopener" target="_blank">个人博客</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fas fa-bone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elijah</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
