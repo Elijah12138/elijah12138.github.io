@@ -126,7 +126,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="history fa-fw"></i>归档<span class="badge">38</span></a>
+    <a href="/archives/" rel="section"><i class="history fa-fw"></i>归档<span class="badge">40</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -136,7 +136,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">13</span></a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -167,6 +167,151 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%95%B0%E5%80%BC%E7%9A%84%E6%AD%A3%E6%95%B0%E6%AC%A1%E6%96%B9%EF%BC%88java%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Elijah">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Elijah的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/06/%E5%89%91%E6%8C%87offer-%E6%95%B0%E5%80%BC%E7%9A%84%E6%AD%A3%E6%95%B0%E6%AC%A1%E6%96%B9%EF%BC%88java%EF%BC%89/" class="post-title-link" itemprop="url">剑指offer-数值的正数次方（java）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-06 11:28:19 / Modified: 11:28:37" itemprop="dateCreated datePublished" datetime="2020-04-06T11:28:19+08:00">2020-04-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>问题描述：</p>
+<p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。<br>保证base和exponent不同时为0</p>
+</blockquote>
+<h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><ol>
+<li>首先判断exponent的正负，如果为负数就取绝对值，并赋值给exponentPos</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">Power</span><span class="params">(<span class="keyword">double</span> base, <span class="keyword">int</span> exponent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> power = <span class="number">1.0</span>;</span><br><span class="line">        <span class="keyword">int</span> exponentPos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (exponent &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            exponentPos = Math.abs(exponent);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            exponentPos = exponent;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; exponentPos; i++) &#123;</span><br><span class="line">            power *= base;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (exponent &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            power = <span class="number">1</span> / power;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> power;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/%E5%89%91%E6%8C%87offer-%E8%B7%B3%E5%8F%B0%E9%98%B6%EF%BC%88java%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Elijah">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Elijah的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/06/%E5%89%91%E6%8C%87offer-%E8%B7%B3%E5%8F%B0%E9%98%B6%EF%BC%88java%EF%BC%89/" class="post-title-link" itemprop="url">剑指offer-跳台阶（java）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-06 11:27:37 / Modified: 11:28:05" itemprop="dateCreated datePublished" datetime="2020-04-06T11:27:37+08:00">2020-04-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>问题描述：</p>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+</blockquote>
+<h6 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloor</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">9999</span>];</span><br><span class="line">        ret[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        ret[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; target; i++) &#123;</span><br><span class="line">            ret[i] = ret[i - <span class="number">1</span>] + ret[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret[target - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -780,166 +925,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/03/Linux-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Elijah">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Elijah的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/03/Linux-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Linux-部署项目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-03 21:45:45" itemprop="dateCreated datePublished" datetime="2020-04-03T21:45:45+08:00">2020-04-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-04 12:20:42" itemprop="dateModified" datetime="2020-04-04T12:20:42+08:00">2020-04-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="1-通过winscp将文件上传至服务器"><a href="#1-通过winscp将文件上传至服务器" class="headerlink" title="1. 通过winscp将文件上传至服务器"></a>1. 通过winscp将文件上传至服务器</h5><h5 id="2-下载tmux"><a href="#2-下载tmux" class="headerlink" title="2. 下载tmux"></a>2. 下载<code>tmux</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-打开tmux"><a href="#3-打开tmux" class="headerlink" title="3. 打开tmux"></a>3. 打开<code>tmux</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-运行代码"><a href="#4-运行代码" class="headerlink" title="4. 运行代码"></a>4. 运行代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ***.jar</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/03/%E9%98%BF%E9%87%8C%E4%BA%91-OSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88JAVA%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Elijah">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Elijah的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/03/%E9%98%BF%E9%87%8C%E4%BA%91-OSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%EF%BC%88JAVA%EF%BC%89/" class="post-title-link" itemprop="url">阿里云-OSS简单使用（JAVA）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-03 21:42:43" itemprop="dateCreated datePublished" datetime="2020-04-03T21:42:43+08:00">2020-04-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-04 12:21:21" itemprop="dateModified" datetime="2020-04-04T12:21:21+08:00">2020-04-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%98%BF%E9%87%8C%E4%BA%91/" itemprop="url" rel="index"><span itemprop="name">阿里云</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.安装</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>配置accesskey<br>在springboot项目中创建<code>accesskey.properties</code>文件，内容如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">endpoint&#x3D;对象存储的地域节点</span><br><span class="line">accessKeyId&#x3D;最好使用访问控制 RAM</span><br><span class="line">accessKeySecret&#x3D;***</span><br><span class="line">bucketName&#x3D;***</span><br></pre></td></tr></table></figure></li>
-<li>创建<code>OSSUtils</code>功能类进行测试<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] getAccessKey() &#123;</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        String projectPath = System.getProperty(<span class="string">"user.dir"</span>);</span><br><span class="line">        String[] str = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line">        String accessProperties = projectPath + <span class="string">"\\src\\main\\java\\设置为自己项目的路径\\accesskey.properties"</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(accessProperties));</span><br><span class="line">            prop.load(in);     <span class="comment">///加载属性列表</span></span><br><span class="line">            str[<span class="number">0</span>] = prop.getProperty(<span class="string">"endpoint"</span>);</span><br><span class="line">            str[<span class="number">1</span>] = prop.getProperty(<span class="string">"accessKeyId"</span>);</span><br><span class="line">            str[<span class="number">2</span>] = prop.getProperty(<span class="string">"accessKeySecret"</span>);</span><br><span class="line">            str[<span class="number">3</span>] = prop.getProperty(<span class="string">"bucketName"</span>);</span><br><span class="line">            in.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li>查询所有文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFilesMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造ListObjectsRequest请求。</span></span><br><span class="line">        ListObjectsRequest listObjectsRequest = <span class="keyword">new</span> ListObjectsRequest(bucketName);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 列出文件。</span></span><br><span class="line">        ObjectListing listing = ossClient.listObjects(listObjectsRequest);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历所有文件。</span></span><br><span class="line">        System.out.println(<span class="string">"Objects:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (OSSObjectSummary objectSummary : listing.getObjectSummaries()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"getKey = "</span> + objectSummary.getKey());</span><br><span class="line">            System.out.println(<span class="string">"getSize = "</span> + objectSummary.getSize());</span><br><span class="line">            System.out.println(<span class="string">"getBucketName = "</span> + objectSummary.getBucketName());</span><br><span class="line">            System.out.println(<span class="string">"getETag = "</span> + objectSummary.getETag());</span><br><span class="line">            System.out.println(<span class="string">"getLastModified = "</span> + objectSummary.getLastModified());</span><br><span class="line">            System.out.println(<span class="string">"getOwner = "</span> + objectSummary.getOwner());</span><br><span class="line">            System.out.println(<span class="string">"-------------------------------------------------"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li>删除文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteFiles</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除文件。key等同于ObjectName，表示删除OSS文件时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。</span></span><br><span class="line">        List&lt;String&gt; keys = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        keys.add(<span class="string">"test"</span>);</span><br><span class="line">        keys.add(<span class="string">"test1"</span>);</span><br><span class="line"></span><br><span class="line">        DeleteObjectsResult deleteObjectsResult = ossClient.deleteObjects(<span class="keyword">new</span> DeleteObjectsRequest(bucketName).withKeys(keys));</span><br><span class="line">        List&lt;String&gt; deletedObjects = deleteObjectsResult.getDeletedObjects();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li>上传文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">filesUpload</span><span class="params">(String filePath, String fileName)</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 带进度条的上传。</span></span><br><span class="line">            ossClient.putObject(<span class="keyword">new</span> PutObjectRequest(bucketName, fileName, <span class="keyword">new</span> File(<span class="string">"C:\\Users\\Elijah\\Desktop\\新建文本文档.txt"</span>)).</span><br><span class="line">                    &lt;PutObjectRequest&gt;withProgressListener(<span class="keyword">new</span> PutObjectProgressListener()));</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li>断点续传下载文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloadFiles</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OSSUtils ossUtils = <span class="keyword">new</span> OSSUtils();</span><br><span class="line">        String[] str = ossUtils.getAccessKey();</span><br><span class="line">        String endpoint = str[<span class="number">0</span>];</span><br><span class="line">        String accessKeyId = str[<span class="number">1</span>];</span><br><span class="line">        String accessKeySecret = str[<span class="number">2</span>];</span><br><span class="line">        String bucketName = str[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建OSSClient实例。</span></span><br><span class="line">        OSS ossClient = <span class="keyword">new</span> OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 下载请求，10个任务并发下载，启动断点续传。</span></span><br><span class="line">        DownloadFileRequest downloadFileRequest = <span class="keyword">new</span> DownloadFileRequest(bucketName, objectName);</span><br><span class="line">        downloadFileRequest.setDownloadFile(<span class="string">"te.txt"</span>);</span><br><span class="line">        downloadFileRequest.setPartSize(<span class="number">1</span> * <span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line">        downloadFileRequest.setTaskNum(<span class="number">10</span>);</span><br><span class="line">        downloadFileRequest.setEnableCheckpoint(<span class="keyword">true</span>);</span><br><span class="line">        downloadFileRequest.setCheckpointFile(<span class="string">"download.ucp"</span>);</span><br><span class="line"></span><br><span class="line">        DownloadFileResult downloadRes = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 下载文件。</span></span><br><span class="line">            downloadRes = ossClient.downloadFile(downloadFileRequest);</span><br><span class="line">            <span class="comment">// 下载成功时，会返回文件元信息。</span></span><br><span class="line">            downloadRes.getObjectMetadata();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 关闭OSSClient。</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1011,7 +996,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1024,7 +1009,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
